@@ -92,17 +92,7 @@
             "IsMultiplayerCompatible": true,
             "Tags": ["forest", "adventure"]
         },
-        {
-            "ID": 10,
-            "Title": "Ocean Life",
-            "Description": "Creatures of the deep sea.",
-            "EmojiSolution": ["U+1F41F", "U+1F420", "U+1F421"],
-            "DecoyEmojis": ["U+1F41A", "U+1F41B", "U+1F41C", "U+1F41D", "U+1F41E", "U+1F419", "U+1F418", "U+1F417", "U+1F416", "U+1F415", "U+1F414", "U+1F413", "U+1F412", "U+1F411", "U+1F410", "U+1F40F", "U+1F40E", "U+1F40D", "U+1F40C"],
-            "Difficulty": 6,
-            "IsMultiplayerCompatible": true,
-            "Tags": ["ocean", "animals"]
-        },
-        
+      
             {
                 "ID": 10,
                 "Title": "Ocean Life",
@@ -213,6 +203,831 @@
                 "IsMultiplayerCompatible": true,
                 "Tags": ["forest", "camping"]
             }
+
+            ,
+                {
+                    "ID": 21,
+                    "Title": "Haunted House",
+                    "Description": "Spooky place with ghosts.",
+                    "EmojiSolution": ["U+1F3E4", "U+1F47B", "U+1F383"],
+                    "DecoyEmojis": ["U+1F3D4", "U+1F3D5", "U+1F3D6", "U+1F3D7", "U+1F3D8", "U+1F3D9", "U+1F3DA", "U+1F3DB", "U+1F3DC", "U+1F3DD", "U+1F3DE", "U+1F3DF", "U+1F3E0", "U+1F3E1", "U+1F3E2", "U+1F3E3", "U+1F3E5", "U+1F3E6", "U+1F3E7"],
+                    "Difficulty": 6,
+                    "IsMultiplayerCompatible": true,
+                    "Tags": ["haunted", "ghosts"]
+                },
+                {
+                    "ID": 22,
+                    "Title": "School Days",
+                    "Description": "Learning and studying.",
+                    "EmojiSolution": ["U+1F3EB", "U+1F4DA", "U+1F4D3"],
+                    "DecoyEmojis": ["U+1F4D0", "U+1F4D1", "U+1F4D2", "U+1F4D4", "U+1F4D5", "U+1F4D6", "U+1F4D7", "U+1F4D8", "U+1F4D9", "U+1F4DB", "U+1F4DC", "U+1F4DD", "U+1F4DE", "U+1F4DF", "U+1F4E0", "U+1F4E1", "U+1F4E2", "U+1F4E3", "U+1F4E4"],
+                    "Difficulty": 5,
+                    "IsMultiplayerCompatible": true,
+                    "Tags": ["school", "learning"]
+                },
+                {
+                    "ID": 23,
+                    "Title": "Wedding Day",
+                    "Description": "A special day of love and commitment.",
+                    "EmojiSolution": ["U+1F470", "U+1F46D", "U+1F490"],
+                    "DecoyEmojis": ["U+1F464", "U+1F465", "U+1F466", "U+1F467", "U+1F468", "U+1F469", "U+1F46A", "U+1F46B", "U+1F46C", "U+1F46E", "U+1F46F", "U+1F471", "U+1F472", "U+1F473", "U+1F474", "U+1F475", "U+1F476", "U+1F477", "U+1F478"],
+                    "Difficulty": 6,
+                    "IsMultiplayerCompatible": true,
+                    "Tags": ["wedding", "love"]
+                },
+                {
+                    "ID": 24,
+                    "Title": "Music Concert",
+                    "Description": "Live performance with instruments.",
+                    "EmojiSolution": ["U+1F3A4", "U+1F3B5", "U+1F3B6"],
+                    "DecoyEmojis": ["U+1F3B7", "U+1F3B8", "U+1F3B9", "U+1F3BA", "U+1F3BB", "U+1F3BC", "U+1F3BD", "U+1F3BE", "U+1F3BF", "U+1F3C0", "U+1F3C1", "U+1F3C2", "U+1F3C3", "U+1F3C4", "U+1F3C5", "U+1F3C6", "U+1F3C7", "U+1F3C8", "U+1F3C9"],
+                    "Difficulty": 5,
+                    "IsMultiplayerCompatible": true,
+                    "Tags": ["music", "concert"]
+                },
+                {
+                    "ID": 25,
+                    "Title": "Zoo Visit",
+                    "Description": "A day seeing various animals.",
+                    "EmojiSolution": ["U+1F405", "U+1F986", "U+1F98A"],
+                    "DecoyEmojis": ["U+1F981", "U+1F982", "U+1F983", "U+1F984", "U+1F985", "U+1F987", "U+1F988", "U+1F989", "U+1F98B", "U+1F98C", "U+1F98D", "U+1F98E", "U+1F98F", "U+1F990", "U+1F991", "U+1F992", "U+1F993", "U+1F994", "U+1F995"],
+                    "Difficulty": 5,
+                    "IsMultiplayerCompatible": true,
+                    "Tags": ["zoo", "animals"]
+                },
+                {
+                    "ID": 26,
+                    "Title": "Halloween Night",
+                    "Description": "Spooky celebration with costumes.",
+                    "EmojiSolution": ["U+1F383", "U+1F47B", "U+1F9DF"],
+                    "DecoyEmojis": ["U+1F380", "U+1F381", "U+1F382", "U+1F384", "U+1F385", "U+1F386", "U+1F387", "U+1F388", "U+1F389", "U+1F38A", "U+1F38B", "U+1F38C", "U+1F38D", "U+1F38E", "U+1F38F", "U+1F390", "U+1F391", "U+1F392", "U+1F393"],
+                    "Difficulty": 6,
+                    "IsMultiplayerCompatible": true,
+                    "Tags": ["halloween", "spooky"]
+                },
+                {
+                    "ID": 27,
+                    "Title": "Christmas Eve",
+                    "Description": "Festive night with gifts and tree.",
+                    "EmojiSolution": ["U+1F384", "U+1F385", "U+1F381"],
+                    "DecoyEmojis": ["U+1F380", "U+1F382", "U+1F383", "U+1F386", "U+1F387", "U+1F388", "U+1F389", "U+1F38A", "U+1F38B", "U+1F38C", "U+1F38D", "U+1F38E", "U+1F38F", "U+1F390", "U+1F391", "U+1F392", "U+1F393", "U+1F396", "U+1F397"],
+                    "Difficulty": 5,
+                    "IsMultiplayerCompatible": true,
+                    "Tags": ["christmas", "festive"]
+                },
+                {
+                    "ID": 28,
+                    "Title": "Desert Journey",
+                    "Description": "Hot and sandy landscapes.",
+                    "EmojiSolution": ["U+1F335", "U+1F701", "U+2600"],
+                    "DecoyEmojis": ["U+1F331", "U+1F332", "U+1F333", "U+1F334", "U+1F336", "U+1F337", "U+1F338", "U+1F339", "U+1F33A", "U+1F33B", "U+1F33C", "U+1F33D", "U+1F33E", "U+1F33F", "U+1F340", "U+1F341", "U+1F342", "U+1F343", "U+1F344"],
+                    "Difficulty": 6,
+                    "IsMultiplayerCompatible": true,
+                    "Tags": ["desert", "journey"]
+                },
+                {
+                    "ID": 29,
+                    "Title": "Tropical Vacation",
+                    "Description": "Relaxing on a sunny island.",
+                    "EmojiSolution": ["U+1F334", "U+1F30A", "U+2600"],
+                    "DecoyEmojis": ["U+1F331", "U+1F332", "U+1F333", "U+1F335", "U+1F336", "U+1F337", "U+1F338", "U+1F339", "U+1F33A", "U+1F33B", "U+1F33C", "U+1F33D", "U+1F33E", "U+1F33F", "U+1F340", "U+1F341", "U+1F342", "U+1F343", "U+1F344"],
+                    "Difficulty": 5,
+                    "IsMultiplayerCompatible": true,
+                    "Tags": ["tropical", "vacation"]
+                },
+                {
+                    "ID": 30,
+                    "Title": "Arctic Expedition",
+                    "Description": "Cold and icy exploration.",
+                    "EmojiSolution": ["U+2744", "U+1F3D4", "U+26C4"],
+                    "DecoyEmojis": ["U+2600", "U+2601", "U+2602", "U+2603", "U+2614", "U+2615", "U+263C", "U+2640", "U+2641", "U+2642", "U+2643", "U+2644", "U+2645", "U+2646", "U+2647", "U+2648", "U+2649", "U+264A", "U+264B"],
+                    "Difficulty": 7,
+                    "IsMultiplayerCompatible": true,
+                    "Tags": ["arctic", "expedition"]
+                },
+                
+                    {
+                        "ID": 31,
+                        "Title": "Mountain Climbing",
+                        "Description": "Scaling the highest peaks.",
+                        "EmojiSolution": ["U+1F3D4", "U+1F3C6", "U+1F9D7"],
+                        "DecoyEmojis": ["U+1F3D5", "U+1F3D6", "U+1F3D7", "U+1F3D8", "U+1F3D9", "U+1F3DA", "U+1F3DB", "U+1F3DC", "U+1F3DD", "U+1F3DE", "U+1F3DF", "U+1F3E0", "U+1F3E1", "U+1F3E2", "U+1F3E3", "U+1F3E4", "U+1F3E5", "U+1F3E6", "U+1F3E7"],
+                        "Difficulty": 7,
+                        "IsMultiplayerCompatible": true,
+                        "Tags": ["mountain", "climbing"]
+                    },
+                    {
+                        "ID": 32,
+                        "Title": "Rainforest Adventure",
+                        "Description": "Exploring dense and green forests.",
+                        "EmojiSolution": ["U+1F343", "U+1F33A", "U+1F343"],
+                        "DecoyEmojis": ["U+1F340", "U+1F341", "U+1F342", "U+1F344", "U+1F345", "U+1F346", "U+1F347", "U+1F348", "U+1F349", "U+1F34A", "U+1F34B", "U+1F34C", "U+1F34D", "U+1F34E", "U+1F34F", "U+1F350", "U+1F351", "U+1F352", "U+1F353"],
+                        "Difficulty": 6,
+                        "IsMultiplayerCompatible": true,
+                        "Tags": ["rainforest", "adventure"]
+                    },
+                    {
+                        "ID": 33,
+                        "Title": "Bakery Delights",
+                        "Description": "Delicious pastries and cakes.",
+                        "EmojiSolution": ["U+1F370", "U+1F382", "U+1F36A"],
+                        "DecoyEmojis": ["U+1F36B", "U+1F36C", "U+1F36D", "U+1F36E", "U+1F36F", "U+1F37A", "U+1F37B", "U+1F37C", "U+1F37D", "U+1F37E", "U+1F37F", "U+1F380", "U+1F381", "U+1F383", "U+1F384", "U+1F385", "U+1F386", "U+1F387", "U+1F388"],
+                        "Difficulty": 5,
+                        "IsMultiplayerCompatible": true,
+                        "Tags": ["bakery", "pastries"]
+                    },
+                    {
+                        "ID": 34,
+                        "Title": "Medieval Times",
+                        "Description": "Knights, castles, and dragons.",
+                        "EmojiSolution": ["U+1F451", "U+1F434", "U+1F409"],
+                        "DecoyEmojis": ["U+1F400", "U+1F401", "U+1F402", "U+1F403", "U+1F404", "U+1F405", "U+1F406", "U+1F407", "U+1F408", "U+1F40A", "U+1F40B", "U+1F40C", "U+1F40D", "U+1F40E", "U+1F40F", "U+1F410", "U+1F411", "U+1F412", "U+1F413"],
+                        "Difficulty": 7,
+                        "IsMultiplayerCompatible": true,
+                        "Tags": ["medieval", "knights"]
+                    },
+                    {
+                        "ID": 35,
+                        "Title": "Underwater Exploration",
+                        "Description": "Discovering the deep blue sea.",
+                        "EmojiSolution": ["U+1F420", "U+1F41F", "U+1F30A"],
+                        "DecoyEmojis": ["U+1F41A", "U+1F41B", "U+1F41C", "U+1F41D", "U+1F41E", "U+1F419", "U+1F418", "U+1F417", "U+1F416", "U+1F415", "U+1F414", "U+1F413", "U+1F412", "U+1F411", "U+1F410", "U+1F40F", "U+1F40E", "U+1F40D", "U+1F40C"],
+                        "Difficulty": 6,
+                        "IsMultiplayerCompatible": true,
+                        "Tags": ["underwater", "exploration"]
+                    },
+                    {
+                        "ID": 36,
+                        "Title": "Skiing Adventure",
+                        "Description": "Downhill on snowy slopes.",
+                        "EmojiSolution": ["U+1F3BF", "U+2744", "U+1F3C2"],
+                        "DecoyEmojis": ["U+1F3C0", "U+1F3C1", "U+1F3C3", "U+1F3C4", "U+1F3C5", "U+1F3C6", "U+1F3C7", "U+1F3C8", "U+1F3C9", "U+1F3CA", "U+1F3CB", "U+1F3CC", "U+1F3CD", "U+1F3CE", "U+1F3CF", "U+1F3D0", "U+1F3D1", "U+1F3D2", "U+1F3D3"],
+                        "Difficulty": 6,
+                        "IsMultiplayerCompatible": true,
+                        "Tags": ["skiing", "snow"]
+                    },
+                    {
+                        "ID": 37,
+                        "Title": "Space Odyssey",
+                        "Description": "Exploring the vast universe.",
+                        "EmojiSolution": ["U+1F680", "U+1F319", "U+1F30C"],
+                        "DecoyEmojis": ["U+1F30D", "U+1F30E", "U+1F30F", "U+1F310", "U+1F311", "U+1F312", "U+1F313", "U+1F314", "U+1F315", "U+1F316", "U+1F317", "U+1F318", "U+1F31A", "U+1F31B", "U+1F31C", "U+1F31D", "U+1F31E", "U+1F31F", "U+1F320"],
+                        "Difficulty": 7,
+                        "IsMultiplayerCompatible": true,
+                        "Tags": ["space", "universe"]
+                    },
+                    {
+                        "ID": 38,
+                        "Title": "Jungle Safari",
+                        "Description": "Wildlife in dense forests.",
+                        "EmojiSolution": ["U+1F343", "U+1F406", "U+1F99B"],
+                        "DecoyEmojis": ["U+1F990", "U+1F991", "U+1F992", "U+1F993", "U+1F994", "U+1F995", "U+1F996", "U+1F997", "U+1F998", "U+1F999", "U+1F99A", "U+1F99C", "U+1F99D", "U+1F99E", "U+1F99F", "U+1F9A0", "U+1F9A1", "U+1F9A2", "U+1F9A3"],
+                        "Difficulty": 6,
+                        "IsMultiplayerCompatible": true,
+                        "Tags": ["jungle", "safari"]
+                    },
+                    {
+                        "ID": 39,
+                        "Title": "Farm Life",
+                        "Description": "Animals and crops in the countryside.",
+                        "EmojiSolution": ["U+1F414", "U+1F33D", "U+1F69C"],
+                        "DecoyEmojis": ["U+1F68C", "U+1F68D", "U+1F68E", "U+1F68F", "U+1F690", "U+1F691", "U+1F692", "U+1F693", "U+1F694", "U+1F695", "U+1F696", "U+1F697", "U+1F698", "U+1F699", "U+1F69A", "U+1F69B", "U+1F69D", "U+1F69E", "U+1F69F"],
+                        "Difficulty": 5,
+                        "IsMultiplayerCompatible": true,
+                        "Tags": ["farm", "countryside"]
+                    },
+                    {
+                        "ID": 40,
+                        "Title": "Medieval Battle",
+                        "Description": "Knights, swords, and shields.",
+                        "EmojiSolution": ["U+1F5E1", "U+1F6E1", "U+1F451"],
+                        "DecoyEmojis": ["U+1F452", "U+1F453", "U+1F454", "U+1F455", "U+1F456", "U+1F457", "U+1F458", "U+1F459", "U+1F45A", "U+1F45B", "U+1F45C", "U+1F45D", "U+1F45E", "U+1F45F", "U+1F460", "U+1F461", "U+1F462", "U+1F463", "U+1F464"],
+                        "Difficulty": 7,
+                        "IsMultiplayerCompatible": true,
+                        "Tags": ["medieval", "battle"]
+                    }
+                ,
+                
+                    {
+                        "ID": 41,
+                        "Title": "Beach Vacation",
+                        "Description": "Sun, sand, and sea.",
+                        "EmojiSolution": ["U+1F3CA", "U+1F30A", "U+2600"],
+                        "DecoyEmojis": ["U+1F3CB", "U+1F3CC", "U+1F3CD", "U+1F3CE", "U+1F3CF", "U+1F3D0", "U+1F3D1", "U+1F3D2", "U+1F3D3", "U+1F3D4", "U+1F3D5", "U+1F3D6", "U+1F3D7", "U+1F3D8", "U+1F3D9", "U+1F3DA", "U+1F3DB", "U+1F3DC", "U+1F3DD"],
+                        "Difficulty": 5,
+                        "IsMultiplayerCompatible": true,
+                        "Tags": ["beach", "vacation"]
+                    },
+                    {
+                        "ID": 42,
+                        "Title": "City Life",
+                        "Description": "Skyscrapers, taxis, and hustle.",
+                        "EmojiSolution": ["U+1F3E0", "U+1F3E2", "U+1F695"],
+                        "DecoyEmojis": ["U+1F3E3", "U+1F3E4", "U+1F3E5", "U+1F3E6", "U+1F3E7", "U+1F3E8", "U+1F3E9", "U+1F3EA", "U+1F3EB", "U+1F3EC", "U+1F3ED", "U+1F3EE", "U+1F3EF", "U+1F3F0", "U+1F3F1", "U+1F3F2", "U+1F3F3", "U+1F3F4", "U+1F3F5"],
+                        "Difficulty": 6,
+                        "IsMultiplayerCompatible": true,
+                        "Tags": ["city", "urban"]
+                    },
+                    {
+                        "ID": 43,
+                        "Title": "Dinosaur Era",
+                        "Description": "Prehistoric times with giant reptiles.",
+                        "EmojiSolution": ["U+1F996", "U+1F417", "U+1F98E"],
+                        "DecoyEmojis": ["U+1F98F", "U+1F990", "U+1F991", "U+1F992", "U+1F993", "U+1F994", "U+1F995", "U+1F997", "U+1F998", "U+1F999", "U+1F99A", "U+1F99B", "U+1F99C", "U+1F99D", "U+1F99E", "U+1F99F", "U+1F9A0", "U+1F9A1", "U+1F9A2"],
+                        "Difficulty": 7,
+                        "IsMultiplayerCompatible": true,
+                        "Tags": ["dinosaur", "prehistoric"]
+                    },
+                    {
+                        "ID": 44,
+                        "Title": "Camping Trip",
+                        "Description": "Tents, fires, and nature.",
+                        "EmojiSolution": ["U+1F3D5", "U+1F525", "U+1F343"],
+                        "DecoyEmojis": ["U+1F340", "U+1F341", "U+1F342", "U+1F344", "U+1F345", "U+1F346", "U+1F347", "U+1F348", "U+1F349", "U+1F34A", "U+1F34B", "U+1F34C", "U+1F34D", "U+1F34E", "U+1F34F", "U+1F350", "U+1F351", "U+1F352", "U+1F353"],
+                        "Difficulty": 6,
+                        "IsMultiplayerCompatible": true,
+                        "Tags": ["camping", "nature"]
+                    },
+                    {
+                        "ID": 45,
+                        "Title": "Pirate Adventure",
+                        "Description": "Treasure hunts and sea battles.",
+                        "EmojiSolution": ["U+1F3F4", "U+1F3E0", "U+1F4A3"],
+                        "DecoyEmojis": ["U+1F4A4", "U+1F4A5", "U+1F4A6", "U+1F4A7", "U+1F4A8", "U+1F4A9", "U+1F4AA", "U+1F4AB", "U+1F4AC", "U+1F4AD", "U+1F4AE", "U+1F4AF", "U+1F4B0", "U+1F4B1", "U+1F4B2", "U+1F4B3", "U+1F4B4", "U+1F4B5", "U+1F4B6"],
+                        "Difficulty": 7,
+                        "IsMultiplayerCompatible": true,
+                        "Tags": ["pirate", "adventure"]
+                    },
+                    {
+                        "ID": 46,
+                        "Title": "Desert Oasis",
+                        "Description": "A refreshing spot in the hot desert.",
+                        "EmojiSolution": ["U+1F335", "U+1F30A", "U+2600"],
+                        "DecoyEmojis": ["U+2601", "U+2602", "U+2603", "U+2604", "U+2605", "U+2606", "U+2607", "U+2608", "U+2609", "U+260A", "U+260B", "U+260C", "U+260D", "U+260E", "U+260F", "U+2610", "U+2611", "U+2612", "U+2613"],
+                        "Difficulty": 6,
+                        "IsMultiplayerCompatible": true,
+                        "Tags": ["desert", "oasis"]
+                    },
+                    {
+                        "ID": 47,
+                        "Title": "Jungle Expedition",
+                        "Description": "Exploring the wild and dense jungle.",
+                        "EmojiSolution": ["U+1F343", "U+1F33A", "U+1F406"],
+                        "DecoyEmojis": ["U+1F400", "U+1F401", "U+1F402", "U+1F403", "U+1F404", "U+1F405", "U+1F407", "U+1F408", "U+1F409", "U+1F40A", "U+1F40B", "U+1F40C", "U+1F40D", "U+1F40E", "U+1F40F", "U+1F410", "U+1F411", "U+1F412", "U+1F413"],
+                        "Difficulty": 6,
+                        "IsMultiplayerCompatible": true,
+                        "Tags": ["jungle", "expedition"]
+                    },
+                    {
+                        "ID": 48,
+                        "Title": "Winter Wonderland",
+                        "Description": "Snowy landscapes and chilly weather.",
+                        "EmojiSolution": ["U+2744", "U+1F3C2", "U+1F384"],
+                        "DecoyEmojis": ["U+1F385", "U+1F386", "U+1F387", "U+1F388", "U+1F389", "U+1F38A", "U+1F38B", "U+1F38C", "U+1F38D", "U+1F38E", "U+1F38F", "U+1F390", "U+1F391", "U+1F392", "U+1F393", "U+1F394", "U+1F395", "U+1F396", "U+1F397"],
+                        "Difficulty": 7,
+                        "IsMultiplayerCompatible": true,
+                        "Tags": ["winter", "snow"]
+                    },
+                    {
+                        "ID": 49,
+                        "Title": "Haunted Mansion",
+                        "Description": "Ghosts, cobwebs, and spooky vibes.",
+                        "EmojiSolution": ["U+1F47B", "U+1F3E0", "U+1F578"],
+                        "DecoyEmojis": ["U+1F579", "U+1F57A", "U+1F57B", "U+1F57C", "U+1F57D", "U+1F57E", "U+1F57F", "U+1F580", "U+1F581", "U+1F582", "U+1F583", "U+1F584", "U+1F585", "U+1F586", "U+1F587", "U+1F588", "U+1F589", "U+1F58A", "U+1F58B"],
+                        "Difficulty": 7,
+                        "IsMultiplayerCompatible": true,
+                        "Tags": ["haunted", "mansion"]
+                    },
+                    {
+                        "ID": 50,
+                        "Title": "Safari Adventure",
+                        "Description": "Wild animals in the African savannah.",
+                        "EmojiSolution": ["U+1F405", "U+1F98C", "U+1F333"],
+                        "DecoyEmojis": ["U+1F334", "U+1F335", "U+1F336", "U+1F337", "U+1F338", "U+1F339", "U+1F33A", "U+1F33B", "U+1F33C", "U+1F33D", "U+1F33E", "U+1F33F", "U+1F340", "U+1F341", "U+1F342", "U+1F343", "U+1F344", "U+1F345", "U+1F346"],
+                        "Difficulty": 7,
+                        "IsMultiplayerCompatible": true,
+                        "Tags": ["safari", "wildlife"]
+                    }
+                
+                    ,
+                        {
+                            "ID": 51,
+                            "Title": "Robot Revolution",
+                            "Description": "Machines taking over the world.",
+                            "EmojiSolution": ["U+1F916", "U+1F4BB", "U+2699"],
+                            "DecoyEmojis": ["U+1F4BC", "U+1F4BD", "U+1F4BE", "U+1F4BF", "U+1F4C0", "U+1F4C1", "U+1F4C2", "U+1F4C3", "U+1F4C4", "U+1F4C5", "U+1F4C6", "U+1F4C7", "U+1F4C8", "U+1F4C9", "U+1F4CA", "U+1F4CB", "U+1F4CC", "U+1F4CD", "U+1F4CE"],
+                            "Difficulty": 7,
+                            "IsMultiplayerCompatible": true,
+                            "Tags": ["robot", "technology"]
+                        },
+                        {
+                            "ID": 52,
+                            "Title": "Music Concert",
+                            "Description": "Rocking out to live music.",
+                            "EmojiSolution": ["U+1F3A4", "U+1F3B6", "U+1F3BC"],
+                            "DecoyEmojis": ["U+1F3B7", "U+1F3B8", "U+1F3B9", "U+1F3BA", "U+1F3BB", "U+1F3BD", "U+1F3BE", "U+1F3BF", "U+1F3C0", "U+1F3C1", "U+1F3C2", "U+1F3C3", "U+1F3C4", "U+1F3C5", "U+1F3C6", "U+1F3C7", "U+1F3C8", "U+1F3C9", "U+1F3CA"],
+                            "Difficulty": 6,
+                            "IsMultiplayerCompatible": true,
+                            "Tags": ["music", "concert"]
+                        },
+                        {
+                            "ID": 53,
+                            "Title": "Art Museum",
+                            "Description": "Admiring classical and modern art.",
+                            "EmojiSolution": ["U+1F3A8", "U+1F5BC", "U+1F3AD"],
+                            "DecoyEmojis": ["U+1F3AE", "U+1F3AF", "U+1F3B0", "U+1F3B1", "U+1F3B2", "U+1F3B3", "U+1F3B4", "U+1F3B5", "U+1F3B6", "U+1F3B7", "U+1F3B8", "U+1F3B9", "U+1F3BA", "U+1F3BB", "U+1F3BC", "U+1F3BD", "U+1F3BE", "U+1F3BF", "U+1F3C0"],
+                            "Difficulty": 7,
+                            "IsMultiplayerCompatible": true,
+                            "Tags": ["art", "museum"]
+                        },
+                        {
+                            "ID": 54,
+                            "Title": "Halloween Night",
+                            "Description": "Spooky costumes and trick or treating.",
+                            "EmojiSolution": ["U+1F383", "U+1F47B", "U+1F9B8"],
+                            "DecoyEmojis": ["U+1F9B9", "U+1F9BA", "U+1F9BB", "U+1F9BC", "U+1F9BD", "U+1F9BE", "U+1F9BF", "U+1F9C0", "U+1F9C1", "U+1F9C2", "U+1F9C3", "U+1F9C4", "U+1F9C5", "U+1F9C6", "U+1F9C7", "U+1F9C8", "U+1F9C9", "U+1F9CA", "U+1F9CB"],
+                            "Difficulty": 6,
+                            "IsMultiplayerCompatible": true,
+                            "Tags": ["halloween", "spooky"]
+                        },
+                        {
+                            "ID": 55,
+                            "Title": "Christmas Eve",
+                            "Description": "Gifts, snow, and festive vibes.",
+                            "EmojiSolution": ["U+1F384", "U+1F385", "U+2744"],
+                            "DecoyEmojis": ["U+1F386", "U+1F387", "U+1F388", "U+1F389", "U+1F38A", "U+1F38B", "U+1F38C", "U+1F38D", "U+1F38E", "U+1F38F", "U+1F390", "U+1F391", "U+1F392", "U+1F393", "U+1F394", "U+1F395", "U+1F396", "U+1F397", "U+1F398"],
+                            "Difficulty": 5,
+                            "IsMultiplayerCompatible": true,
+                            "Tags": ["christmas", "festive"]
+                        },
+                        {
+                            "ID": 56,
+                            "Title": "Sushi Dinner",
+                            "Description": "Japanese cuisine with fish and rice.",
+                            "EmojiSolution": ["U+1F363", "U+1F364", "U+1F37D"],
+                            "DecoyEmojis": ["U+1F37E", "U+1F37F", "U+1F380", "U+1F381", "U+1F382", "U+1F383", "U+1F384", "U+1F385", "U+1F386", "U+1F387", "U+1F388", "U+1F389", "U+1F38A", "U+1F38B", "U+1F38C", "U+1F38D", "U+1F38E", "U+1F38F", "U+1F390"],
+                            "Difficulty": 6,
+                            "IsMultiplayerCompatible": true,
+                            "Tags": ["sushi", "japanese"]
+                        },
+                        {
+                            "ID": 57,
+                            "Title": "Rainforest Adventure",
+                            "Description": "Exotic animals and dense vegetation.",
+                            "EmojiSolution": ["U+1F343", "U+1F406", "U+1F98E"],
+                            "DecoyEmojis": ["U+1F98F", "U+1F990", "U+1F991", "U+1F992", "U+1F993", "U+1F994", "U+1F995", "U+1F997", "U+1F998", "U+1F999", "U+1F99A", "U+1F99B", "U+1F99C", "U+1F99D", "U+1F99E", "U+1F99F", "U+1F9A0", "U+1F9A1", "U+1F9A2"],
+                            "Difficulty": 7,
+                            "IsMultiplayerCompatible": true,
+                            "Tags": ["rainforest", "adventure"]
+                        },
+                        {
+                            "ID": 58,
+                            "Title": "Mountain Climbing",
+                            "Description": "Scaling high peaks and enjoying the view.",
+                            "EmojiSolution": ["U+1F3D4", "U+1F3D7", "U+1F3D8"],
+                            "DecoyEmojis": ["U+1F3D9", "U+1F3DA", "U+1F3DB", "U+1F3DC", "U+1F3DD", "U+1F3DE", "U+1F3DF", "U+1F3E0", "U+1F3E1", "U+1F3E2", "U+1F3E3", "U+1F3E4", "U+1F3E5", "U+1F3E6", "U+1F3E7", "U+1F3E8", "U+1F3E9", "U+1F3EA", "U+1F3EB"],
+                            "Difficulty": 7,
+                            "IsMultiplayerCompatible": true,
+                            "Tags": ["mountain", "climbing"]
+                        },
+                        {
+                            "ID": 59,
+                            "Title": "Underwater Exploration",
+                            "Description": "Discovering the mysteries of the deep sea.",
+                            "EmojiSolution": ["U+1F420", "U+1F41F", "U+1F30A"],
+                            "DecoyEmojis": ["U+1F30B", "U+1F30C", "U+1F30D", "U+1F30E", "U+1F30F", "U+1F310", "U+1F311", "U+1F312", "U+1F313", "U+1F314", "U+1F315", "U+1F316", "U+1F317", "U+1F318", "U+1F319", "U+1F31A", "U+1F31B", "U+1F31C", "U+1F31D"],
+                            "Difficulty": 7,
+                            "IsMultiplayerCompatible": true,
+                            "Tags": ["underwater", "exploration"]
+                        },
+                        {
+                            "ID": 60,
+                            "Title": "Desert Mirage",
+                            "Description": "Hot sands and illusions in the desert.",
+                            "EmojiSolution": ["U+1F335", "U+1F701", "U+2600"],
+                            "DecoyEmojis": ["U+2601", "U+2602", "U+2603", "U+2604", "U+2605", "U+2606", "U+2607", "U+2608", "U+2609", "U+260A", "U+260B", "U+260C", "U+260D", "U+260E", "U+260F", "U+2610", "U+2611", "U+2612", "U+2613"],
+                            "Difficulty": 7,
+                            "IsMultiplayerCompatible": true,
+                            "Tags": ["desert", "mirage"]
+                        }
+                        ,
+                            {
+                                "ID": 61,
+                                "Title": "Space Odyssey",
+                                "Description": "Exploring the vastness of outer space.",
+                                "EmojiSolution": ["U+1F680", "U+1F4AB", "U+1F319"],
+                                "DecoyEmojis": ["U+1F31A", "U+1F31B", "U+1F31C", "U+1F31D", "U+1F31E", "U+1F31F", "U+1F320", "U+1F321", "U+1F322", "U+1F323", "U+1F324", "U+1F325", "U+1F326", "U+1F327", "U+1F328", "U+1F329", "U+1F32A", "U+1F32B", "U+1F32C"],
+                                "Difficulty": 8,
+                                "IsMultiplayerCompatible": true,
+                                "Tags": ["space", "exploration"]
+                            },
+                            {
+                                "ID": 62,
+                                "Title": "Medieval Kingdom",
+                                "Description": "Castles, knights, and dragons.",
+                                "EmojiSolution": ["U+1F3F0", "U+2694", "U+1F409"],
+                                "DecoyEmojis": ["U+1F3F2", "U+1F3F3", "U+1F3F4", "U+1F3F5", "U+1F3F6", "U+1F3F7", "U+1F3F8", "U+1F3F9", "U+1F3FA", "U+1F3FB", "U+1F3FC", "U+1F3FD", "U+1F3FE", "U+1F3FF", "U+1F400", "U+1F401", "U+1F402", "U+1F403", "U+1F404"],
+                                "Difficulty": 8,
+                                "IsMultiplayerCompatible": true,
+                                "Tags": ["medieval", "kingdom"]
+                            },
+                            {
+                                "ID": 63,
+                                "Title": "Tropical Paradise",
+                                "Description": "Palm trees, sun, and clear blue waters.",
+                                "EmojiSolution": ["U+1F334", "U+2600", "U+1F30A"],
+                                "DecoyEmojis": ["U+1F30B", "U+1F30C", "U+1F30D", "U+1F30E", "U+1F30F", "U+1F310", "U+1F311", "U+1F312", "U+1F313", "U+1F314", "U+1F315", "U+1F316", "U+1F317", "U+1F318", "U+1F319", "U+1F31A", "U+1F31B", "U+1F31C", "U+1F31D"],
+                                "Difficulty": 6,
+                                "IsMultiplayerCompatible": true,
+                                "Tags": ["tropical", "paradise"]
+                            },
+                            {
+                                "ID": 64,
+                                "Title": "Arctic Expedition",
+                                "Description": "Cold winds, icebergs, and polar bears.",
+                                "EmojiSolution": ["U+2744", "U+1F43B", "U+1F30F"],
+                                "DecoyEmojis": ["U+1F310", "U+1F311", "U+1F312", "U+1F313", "U+1F314", "U+1F315", "U+1F316", "U+1F317", "U+1F318", "U+1F319", "U+1F31A", "U+1F31B", "U+1F31C", "U+1F31D", "U+1F31E", "U+1F31F", "U+1F320", "U+1F321", "U+1F322"],
+                                "Difficulty": 7,
+                                "IsMultiplayerCompatible": true,
+                                "Tags": ["arctic", "expedition"]
+                            },
+                            {
+                                "ID": 65,
+                                "Title": "Magic School",
+                                "Description": "Wands, spells, and magical creatures.",
+                                "EmojiSolution": ["U+1F9D0", "U+1F4D6", "U+1F989"],
+                                "DecoyEmojis": ["U+1F3A0", "U+1F3A1", "U+1F3A2", "U+1F3A3", "U+1F3A4", "U+1F3A5", "U+1F3A6", "U+1F3A7", "U+1F3A8", "U+1F3A9", "U+1F3AA", "U+1F3AB", "U+1F3AC", "U+1F3AD", "U+1F3AE", "U+1F3AF", "U+1F3B0", "U+1F3B1", "U+1F3B2"],
+                                "Difficulty": 8,
+                                "IsMultiplayerCompatible": true,
+                                "Tags": ["magic", "school"]
+                            },
+                            {
+                                "ID": 66,
+                                "Title": "Haunted Forest",
+                                "Description": "Spooky trees, ghosts, and eerie sounds.",
+                                "EmojiSolution": ["U+1F47B", "U+1F43B", "U+1F987"],
+                                "DecoyEmojis": ["U+1F3B3", "U+1F3B4", "U+1F3B5", "U+1F3B6", "U+1F3B7", "U+1F3B8", "U+1F3B9", "U+1F3BA", "U+1F3BB", "U+1F3BC", "U+1F3BD", "U+1F3BE", "U+1F3BF", "U+1F3C0", "U+1F3C1", "U+1F3C2", "U+1F3C3", "U+1F3C4", "U+1F3C5"],
+                                "Difficulty": 8,
+                                "IsMultiplayerCompatible": true,
+                                "Tags": ["haunted", "forest"]
+                            },
+                            {
+                                "ID": 67,
+                                "Title": "Ancient Egypt",
+                                "Description": "Pyramids, pharaohs, and hieroglyphs.",
+                                "EmojiSolution": ["U+1F5C8", "U+1F3C8", "U+1F70C"],
+                                "DecoyEmojis": ["U+1F3EC", "U+1F3ED", "U+1F3EE", "U+1F3EF", "U+1F3F0", "U+1F3F1", "U+1F3F2", "U+1F3F3", "U+1F3F4", "U+1F3F5", "U+1F3F6", "U+1F3F7", "U+1F3F8", "U+1F3F9", "U+1F3FA", "U+1F3FB", "U+1F3FC", "U+1F3FD", "U+1F3FE"],
+                                "Difficulty": 9,
+                                "IsMultiplayerCompatible": true,
+                                "Tags": ["ancient", "egypt"]
+                            },
+                            {
+                                "ID": 68,
+                                "Title": "Jungle Safari",
+                                "Description": "Wild animals and dense tropical forests.",
+                                "EmojiSolution": ["U+1F981", "U+1F99C", "U+1F333"],
+                                "DecoyEmojis": ["U+1F3D9", "U+1F3DA", "U+1F3DB", "U+1F3DC", "U+1F3DD", "U+1F3DE", "U+1F3DF", "U+1F3E0", "U+1F3E1", "U+1F3E2", "U+1F3E3", "U+1F3E4", "U+1F3E5", "U+1F3E6", "U+1F3E7", "U+1F3E8", "U+1F3E9", "U+1F3EA", "U+1F3EB"],
+                                "Difficulty": 7,
+                                "IsMultiplayerCompatible": true,
+                                "Tags": ["jungle", "safari"]
+                            },
+                            {
+                                "ID": 69,
+                                "Title": "Pirate's Treasure",
+                                "Description": "Hidden gold, pirate ships, and X marks the spot.",
+                                "EmojiSolution": ["U+1F4B0", "U+1F3F0", "U+1F5FA"],
+                                "DecoyEmojis": ["U+1F3EC", "U+1F3ED", "U+1F3EE", "U+1F3EF", "U+1F3F0", "U+1F3F1", "U+1F3F2", "U+1F3F3", "U+1F3F4", "U+1F3F5", "U+1F3F6", "U+1F3F7", "U+1F3F8", "U+1F3F9", "U+1F3FA", "U+1F3FB", "U+1F3FC", "U+1F3FD", "U+1F3FE"],
+                                "Difficulty": 8,
+                                "IsMultiplayerCompatible": true,
+                                "Tags": ["pirate", "treasure"]
+                            },
+                            {
+                                "ID": 70,
+                                "Title": "Romantic Date",
+                                "Description": "Candlelit dinner, roses, and love.",
+                                "EmojiSolution": ["U+1F56F", "U+1F339", "U+2764"],
+                                "DecoyEmojis": ["U+1F3FF", "U+1F400", "U+1F401", "U+1F402", "U+1F403", "U+1F404", "U+1F405", "U+1F406", "U+1F407", "U+1F408", "U+1F409", "U+1F40A", "U+1F40B", "U+1F40C", "U+1F40D", "U+1F40E", "U+1F40F", "U+1F410", "U+1F411"],
+                                "Difficulty": 6,
+                                "IsMultiplayerCompatible": true,
+                                "Tags": ["romantic", "date"]
+                            }
+                        ,
+                            {
+                                "ID": 71,
+                                "Title": "Under the Sea",
+                                "Description": "Colorful fish, corals, and deep blue waters.",
+                                "EmojiSolution": ["U+1F41F", "U+1F420", "U+1F30A"],
+                                "DecoyEmojis": ["U+1F412", "U+1F413", "U+1F414", "U+1F415", "U+1F416", "U+1F417", "U+1F418", "U+1F419", "U+1F41A", "U+1F41B", "U+1F41C", "U+1F41D", "U+1F41E", "U+1F421", "U+1F422", "U+1F423", "U+1F424", "U+1F425", "U+1F426"],
+                                "Difficulty": 7,
+                                "IsMultiplayerCompatible": true,
+                                "Tags": ["ocean", "marine life"]
+                            },
+                            {
+                                "ID": 72,
+                                "Title": "Desert Mirage",
+                                "Description": "Endless sand dunes, cacti, and scorching sun.",
+                                "EmojiSolution": ["U+1F335", "U+1F3DC", "U+2600"],
+                                "DecoyEmojis": ["U+1F427", "U+1F428", "U+1F429", "U+1F42A", "U+1F42B", "U+1F42C", "U+1F42D", "U+1F42E", "U+1F42F", "U+1F430", "U+1F431", "U+1F432", "U+1F433", "U+1F434", "U+1F435", "U+1F436", "U+1F437", "U+1F438", "U+1F439"],
+                                "Difficulty": 6,
+                                "IsMultiplayerCompatible": true,
+                                "Tags": ["desert", "mirage"]
+                            },
+                            {
+                                "ID": 73,
+                                "Title": "Mountain Hike",
+                                "Description": "Tall peaks, backpacks, and nature trails.",
+                                "EmojiSolution": ["U+1F6B5", "U+1F3D4", "U+1F392"],
+                                "DecoyEmojis": ["U+1F43A", "U+1F43B", "U+1F43C", "U+1F43D", "U+1F43E", "U+1F43F", "U+1F440", "U+1F441", "U+1F442", "U+1F443", "U+1F444", "U+1F445", "U+1F446", "U+1F447", "U+1F448", "U+1F449", "U+1F44A", "U+1F44B", "U+1F44C"],
+                                "Difficulty": 7,
+                                "IsMultiplayerCompatible": true,
+                                "Tags": ["mountain", "hiking"]
+                            },
+                            {
+                                "ID": 74,
+                                "Title": "City Life",
+                                "Description": "Skyscrapers, taxis, and busy streets.",
+                                "EmojiSolution": ["U+1F3E2", "U+1F695", "U+1F3E0"],
+                                "DecoyEmojis": ["U+1F44D", "U+1F44E", "U+1F44F", "U+1F450", "U+1F451", "U+1F452", "U+1F453", "U+1F454", "U+1F455", "U+1F456", "U+1F457", "U+1F458", "U+1F459", "U+1F45A", "U+1F45B", "U+1F45C", "U+1F45D", "U+1F45E", "U+1F45F"],
+                                "Difficulty": 6,
+                                "IsMultiplayerCompatible": true,
+                                "Tags": ["city", "urban"]
+                            },
+                            {
+                                "ID": 75,
+                                "Title": "Rainforest Adventure",
+                                "Description": "Exotic animals, waterfalls, and dense foliage.",
+                                "EmojiSolution": ["U+1F343", "U+1F98B", "U+1F30B"],
+                                "DecoyEmojis": ["U+1F460", "U+1F461", "U+1F462", "U+1F463", "U+1F464", "U+1F465", "U+1F466", "U+1F467", "U+1F468", "U+1F469", "U+1F46A", "U+1F46B", "U+1F46C", "U+1F46D", "U+1F46E", "U+1F46F", "U+1F470", "U+1F471", "U+1F472"],
+                                "Difficulty": 8,
+                                "IsMultiplayerCompatible": true,
+                                "Tags": ["rainforest", "adventure"]
+                            },
+                            {
+                                "ID": 76,
+                                "Title": "Winter Wonderland",
+                                "Description": "Snowmen, snowflakes, and chilly winds.",
+                                "EmojiSolution": ["U+2603", "U+2744", "U+1F3C2"],
+                                "DecoyEmojis": ["U+1F473", "U+1F474", "U+1F475", "U+1F476", "U+1F477", "U+1F478", "U+1F479", "U+1F47A", "U+1F47B", "U+1F47C", "U+1F47D", "U+1F47E", "U+1F47F", "U+1F480", "U+1F481", "U+1F482", "U+1F483", "U+1F484", "U+1F485"],
+                                "Difficulty": 6,
+                                "IsMultiplayerCompatible": true,
+                                "Tags": ["winter", "snow"]
+                            },
+                            {
+                                "ID": 77,
+                                "Title": "Farm Life",
+                                "Description": "Cows, tractors, and fields of crops.",
+                                "EmojiSolution": ["U+1F404", "U+1F69C", "U+1F33E"],
+                                "DecoyEmojis": ["U+1F486", "U+1F487", "U+1F488", "U+1F489", "U+1F48A", "U+1F48B", "U+1F48C", "U+1F48D", "U+1F48E", "U+1F48F", "U+1F490", "U+1F491", "U+1F492", "U+1F493", "U+1F494", "U+1F495", "U+1F496", "U+1F497", "U+1F498"],
+                                "Difficulty": 6,
+                                "IsMultiplayerCompatible": true,
+                                "Tags": ["farm", "agriculture"]
+                            },
+                            {
+                                "ID": 78,
+                                "Title": "Beach Vacation",
+                                "Description": "Sunbathing, sandcastles, and waves.",
+                                "EmojiSolution": ["U+1F3CA", "U+1F3D6", "U+1F30A"],
+                                "DecoyEmojis": ["U+1F499", "U+1F49A", "U+1F49B", "U+1F49C", "U+1F49D", "U+1F49E", "U+1F49F", "U+1F4A0", "U+1F4A1", "U+1F4A2", "U+1F4A3", "U+1F4A4", "U+1F4A5", "U+1F4A6", "U+1F4A7", "U+1F4A8", "U+1F4A9", "U+1F4AA", "U+1F4AB"],
+                                "Difficulty": 5,
+                                "IsMultiplayerCompatible": true,
+                                "Tags": ["beach", "vacation"]
+                            },
+                            {
+                                "ID": 79,
+                                "Title": "Dinosaur Era",
+                                "Description": "Giant reptiles, volcanoes, and prehistoric times.",
+                                "EmojiSolution": ["U+1F995", "U+1F996", "U+1F30B"],
+                                "DecoyEmojis": ["U+1F4AC", "U+1F4AD", "U+1F4AE", "U+1F4AF", "U+1F4B0", "U+1F4B1", "U+1F4B2", "U+1F4B3", "U+1F4B4", "U+1F4B5", "U+1F4B6", "U+1F4B7", "U+1F4B8", "U+1F4B9", "U+1F4BA", "U+1F4BB", "U+1F4BC", "U+1F4BD", "U+1F4BE"],
+                                "Difficulty": 8,
+                                "IsMultiplayerCompatible": true,
+                                "Tags": ["dinosaurs", "prehistoric"]
+                            },
+                            {
+                                "ID": 80,
+                                "Title": "Carnival Fun",
+                                "Description": "Roller coasters, cotton candy, and ferris wheels.",
+                                "EmojiSolution": ["U+1F3A2", "U+1F36C", "U+1F3A1"],
+                                "DecoyEmojis": ["U+1F4BF", "U+1F4C0", "U+1F4C1", "U+1F4C2", "U+1F4C3", "U+1F4C4", "U+1F4C5", "U+1F4C6", "U+1F4C7", "U+1F4C8", "U+1F4C9", "U+1F4CA", "U+1F4CB", "U+1F4CC", "U+1F4CD", "U+1F4CE", "U+1F4CF", "U+1F4D0", "U+1F4D1"],
+                                "Difficulty": 6,
+                                "IsMultiplayerCompatible": true,
+                                "Tags": ["carnival", "amusement park"]
+                            }
+                        ,
+                        
+                            {
+                                "ID": 81,
+                                "Title": "Safari Expedition",
+                                "Description": "Lions, jeeps, and the vast savannah.",
+                                "EmojiSolution": ["U+1F981", "U+1F699", "U+1F3DE"],
+                                "DecoyEmojis": ["U+1F4D2", "U+1F4D3", "U+1F4D4", "U+1F4D5", "U+1F4D6", "U+1F4D7", "U+1F4D8", "U+1F4D9", "U+1F4DA", "U+1F4DB", "U+1F4DC", "U+1F4DD", "U+1F4DE", "U+1F4DF", "U+1F4E0", "U+1F4E1", "U+1F4E2", "U+1F4E3", "U+1F4E4"],
+                                "Difficulty": 7,
+                                "IsMultiplayerCompatible": true,
+                                "Tags": ["safari", "wildlife"]
+                            },
+                            {
+                                "ID": 82,
+                                "Title": "Haunted Mansion",
+                                "Description": "Ghosts, old portraits, and creaky stairs.",
+                                "EmojiSolution": ["U+1F47B", "U+1F3E0", "U+1F56F"],
+                                "DecoyEmojis": ["U+1F4E5", "U+1F4E6", "U+1F4E7", "U+1F4E8", "U+1F4E9", "U+1F4EA", "U+1F4EB", "U+1F4EC", "U+1F4ED", "U+1F4EE", "U+1F4EF", "U+1F4F0", "U+1F4F1", "U+1F4F2", "U+1F4F3", "U+1F4F4", "U+1F4F5", "U+1F4F6", "U+1F4F7"],
+                                "Difficulty": 8,
+                                "IsMultiplayerCompatible": true,
+                                "Tags": ["haunted", "mansion"]
+                            },
+                            {
+                                "ID": 83,
+                                "Title": "Medieval Battle",
+                                "Description": "Knights, castles, and fierce dragons.",
+                                "EmojiSolution": ["U+2694", "U+1F3F0", "U+1F409"],
+                                "DecoyEmojis": ["U+1F4F8", "U+1F4F9", "U+1F4FA", "U+1F4FB", "U+1F4FC", "U+1F4FD", "U+1F4FE", "U+1F4FF", "U+1F500", "U+1F501", "U+1F502", "U+1F503", "U+1F504", "U+1F505", "U+1F506", "U+1F507", "U+1F508", "U+1F509", "U+1F50A"],
+                                "Difficulty": 9,
+                                "IsMultiplayerCompatible": true,
+                                "Tags": ["medieval", "battle"]
+                            },
+                            {
+                                "ID": 84,
+                                "Title": "Space Exploration",
+                                "Description": "Astronauts, rockets, and distant planets.",
+                                "EmojiSolution": ["U+1F680", "U+1F9D1", "U+1F30D"],
+                                "DecoyEmojis": ["U+1F50B", "U+1F50C", "U+1F50D", "U+1F50E", "U+1F50F", "U+1F510", "U+1F511", "U+1F512", "U+1F513", "U+1F514", "U+1F515", "U+1F516", "U+1F517", "U+1F518", "U+1F519", "U+1F51A", "U+1F51B", "U+1F51C", "U+1F51D"],
+                                "Difficulty": 8,
+                                "IsMultiplayerCompatible": true,
+                                "Tags": ["space", "exploration"]
+                            },
+                            {
+                                "ID": 85,
+                                "Title": "Baking Time",
+                                "Description": "Oven mitts, cupcakes, and delicious pies.",
+                                "EmojiSolution": ["U+1F9FE", "U+1F370", "U+1F967"],
+                                "DecoyEmojis": ["U+1F51E", "U+1F51F", "U+1F520", "U+1F521", "U+1F522", "U+1F523", "U+1F524", "U+1F525", "U+1F526", "U+1F527", "U+1F528", "U+1F529", "U+1F52A", "U+1F52B", "U+1F52C", "U+1F52D", "U+1F52E", "U+1F52F", "U+1F530"],
+                                "Difficulty": 6,
+                                "IsMultiplayerCompatible": true,
+                                "Tags": ["baking", "cooking"]
+                            },
+                            {
+                                "ID": 86,
+                                "Title": "Rainy Day",
+                                "Description": "Umbrellas, raindrops, and puddles.",
+                                "EmojiSolution": ["U+2614", "U+1F327", "U+1F4A6"],
+                                "DecoyEmojis": ["U+1F531", "U+1F532", "U+1F533", "U+1F534", "U+1F535", "U+1F536", "U+1F537", "U+1F538", "U+1F539", "U+1F53A", "U+1F53B", "U+1F53C", "U+1F53D", "U+1F549", "U+1F54A", "U+1F54B", "U+1F54C", "U+1F54D", "U+1F54E"],
+                                "Difficulty": 5,
+                                "IsMultiplayerCompatible": true,
+                                "Tags": ["rain", "weather"]
+                            },
+                            {
+                                "ID": 87,
+                                "Title": "School Days",
+                                "Description": "Books, pencils, and school buses.",
+                                "EmojiSolution": ["U+1F4D5", "U+270F", "U+1F68C"],
+                                "DecoyEmojis": ["U+1F550", "U+1F551", "U+1F552", "U+1F553", "U+1F554", "U+1F555", "U+1F556", "U+1F557", "U+1F558", "U+1F559", "U+1F55A", "U+1F55B", "U+1F55C", "U+1F55D", "U+1F55E", "U+1F55F", "U+1F560", "U+1F561", "U+1F562"],
+                                "Difficulty": 5,
+                                "IsMultiplayerCompatible": true,
+                                "Tags": ["school", "education"]
+                            },
+                            {
+                                "ID": 88,
+                                "Title": "Camping Trip",
+                                "Description": "Tents, campfires, and starry nights.",
+                                "EmojiSolution": ["U+1F3D5", "U+1F525", "U+1F320"],
+                                "DecoyEmojis": ["U+1F563", "U+1F564", "U+1F565", "U+1F566", "U+1F567", "U+1F568", "U+1F569", "U+1F56A", "U+1F56B", "U+1F56C", "U+1F56D", "U+1F56E", "U+1F56F", "U+1F570", "U+1F571", "U+1F572", "U+1F573", "U+1F574", "U+1F575"],
+                                "Difficulty": 6,
+                                "IsMultiplayerCompatible": true,
+                                "Tags": ["camping", "outdoors"]
+                            },
+                            {
+                                "ID": 89,
+                                "Title": "Fairy Tale",
+                                "Description": "Magic wands, castles, and fairy wings.",
+                                "EmojiSolution": ["U+1F3F0", "U+1F9DA", "U+1F9B8"],
+                                "DecoyEmojis": ["U+1F576", "U+1F577", "U+1F578", "U+1F579", "U+1F57A", "U+1F57B", "U+1F57C", "U+1F57D", "U+1F57E", "U+1F57F", "U+1F580", "U+1F581", "U+1F582", "U+1F583", "U+1F584", "U+1F585", "U+1F586", "U+1F587", "U+1F588"],
+                                "Difficulty": 7,
+                                "IsMultiplayerCompatible": true,
+                                "Tags": ["fairy tale", "magic"]
+                            },
+                            {
+                                "ID": 90,
+                                "Title": "Jungle Expedition",
+                                "Description": "Monkeys, vines, and tropical birds.",
+                                "EmojiSolution": ["U+1F412", "U+1F9A7", "U+1F99C"],
+                                "DecoyEmojis": ["U+1F589", "U+1F58A", "U+1F58B", "U+1F58C", "U+1F58D", "U+1F58E", "U+1F58F", "U+1F590", "U+1F591", "U+1F592", "U+1F593", "U+1F594", "U+1F595", "U+1F596", "U+1F597", "U+1F598", "U+1F599", "U+1F59A", "U+1F59B"],
+                                "Difficulty": 7,
+                                "IsMultiplayerCompatible": true,
+                                "Tags": ["jungle", "expedition"]
+                            }
+                        ,
+                        
+                            {
+                                "ID": 91,
+                                "Title": "Pirate Adventure",
+                                "Description": "Treasure chests, pirate ships, and skull flags.",
+                                "EmojiSolution": ["U+1F3F4", "U+1F3E0", "U+1F5FD"],
+                                "DecoyEmojis": ["U+1F59C", "U+1F59D", "U+1F59E", "U+1F59F", "U+1F5A0", "U+1F5A1", "U+1F5A2", "U+1F5A3", "U+1F5A4", "U+1F5A5", "U+1F5A6", "U+1F5A7", "U+1F5A8", "U+1F5A9", "U+1F5AA", "U+1F5AB", "U+1F5AC", "U+1F5AD", "U+1F5AE"],
+                                "Difficulty": 8,
+                                "IsMultiplayerCompatible": true,
+                                "Tags": ["pirate", "adventure"]
+                            },
+                            {
+                                "ID": 92,
+                                "Title": "Robot Uprising",
+                                "Description": "Metallic beings, gears, and futuristic tech.",
+                                "EmojiSolution": ["U+1F916", "U+2699", "U+1F4BB"],
+                                "DecoyEmojis": ["U+1F5AF", "U+1F5B0", "U+1F5B1", "U+1F5B2", "U+1F5B3", "U+1F5B4", "U+1F5B5", "U+1F5B6", "U+1F5B7", "U+1F5B8", "U+1F5B9", "U+1F5BA", "U+1F5BB", "U+1F5BC", "U+1F5BD", "U+1F5BE", "U+1F5BF", "U+1F5C0", "U+1F5C1"],
+                                "Difficulty": 9,
+                                "IsMultiplayerCompatible": true,
+                                "Tags": ["robot", "technology"]
+                            },
+                            {
+                                "ID": 93,
+                                "Title": "Mystical Forest",
+                                "Description": "Unicorns, magical trees, and sparkling stars.",
+                                "EmojiSolution": ["U+1F984", "U+1F332", "U+1F31F"],
+                                "DecoyEmojis": ["U+1F5C2", "U+1F5C3", "U+1F5C4", "U+1F5C5", "U+1F5C6", "U+1F5C7", "U+1F5C8", "U+1F5C9", "U+1F5CA", "U+1F5CB", "U+1F5CC", "U+1F5CD", "U+1F5CE", "U+1F5CF", "U+1F5D0", "U+1F5D1", "U+1F5D2", "U+1F5D3", "U+1F5D4"],
+                                "Difficulty": 8,
+                                "IsMultiplayerCompatible": true,
+                                "Tags": ["mystical", "forest"]
+                            },
+                            {
+                                "ID": 94,
+                                "Title": "Ancient Egypt",
+                                "Description": "Pyramids, pharaohs, and the sphinx.",
+                                "EmojiSolution": ["U+1F3E0", "U+1F478", "U+1F40D"],
+                                "DecoyEmojis": ["U+1F5D5", "U+1F5D6", "U+1F5D7", "U+1F5D8", "U+1F5D9", "U+1F5DA", "U+1F5DB", "U+1F5DC", "U+1F5DD", "U+1F5DE", "U+1F5DF", "U+1F5E0", "U+1F5E1", "U+1F5E2", "U+1F5E3", "U+1F5E4", "U+1F5E5", "U+1F5E6", "U+1F5E7"],
+                                "Difficulty": 8,
+                                "IsMultiplayerCompatible": true,
+                                "Tags": ["egypt", "history"]
+                            },
+                            {
+                                "ID": 95,
+                                "Title": "Underwater City",
+                                "Description": "Mermaids, ancient ruins, and deep-sea treasures.",
+                                "EmojiSolution": ["U+1F9D8", "U+1F5FF", "U+1F3E0"],
+                                "DecoyEmojis": ["U+1F5E8", "U+1F5E9", "U+1F5EA", "U+1F5EB", "U+1F5EC", "U+1F5ED", "U+1F5EE", "U+1F5EF", "U+1F5F0", "U+1F5F1", "U+1F5F2", "U+1F5F3", "U+1F5F4", "U+1F5F5", "U+1F5F6", "U+1F5F7", "U+1F5F8", "U+1F5F9", "U+1F5FA"],
+                                "Difficulty": 9,
+                                "IsMultiplayerCompatible": true,
+                                "Tags": ["underwater", "city"]
+                            },
+                            {
+                                "ID": 96,
+                                "Title": "Wild West",
+                                "Description": "Cowboys, saloons, and desert landscapes.",
+                                "EmojiSolution": ["U+1F920", "U+1F3EB", "U+1F3DC"],
+                                "DecoyEmojis": ["U+1F5FB", "U+1F5FC", "U+1F5FD", "U+1F5FE", "U+1F5FF", "U+1F600", "U+1F601", "U+1F602", "U+1F603", "U+1F604", "U+1F605", "U+1F606", "U+1F607", "U+1F608", "U+1F609", "U+1F60A", "U+1F60B", "U+1F60C", "U+1F60D"],
+                                "Difficulty": 7,
+                                "IsMultiplayerCompatible": true,
+                                "Tags": ["wild west", "cowboy"]
+                            },
+                            {
+                                "ID": 97,
+                                "Title": "Jungle Safari",
+                                "Description": "Elephants, binoculars, and tropical birds.",
+                                "EmojiSolution": ["U+1F418", "U+1F50D", "U+1F426"],
+                                "DecoyEmojis": ["U+1F60E", "U+1F60F", "U+1F610", "U+1F611", "U+1F612", "U+1F613", "U+1F614", "U+1F615", "U+1F616", "U+1F617", "U+1F618", "U+1F619", "U+1F61A", "U+1F61B", "U+1F61C", "U+1F61D", "U+1F61E", "U+1F61F", "U+1F620"],
+                                "Difficulty": 6,
+                                "IsMultiplayerCompatible": true,
+                                "Tags": ["jungle", "safari"]
+                            },
+                            {
+                                "ID": 98,
+                                "Title": "Winter Wonderland",
+                                "Description": "Snowmen, ice skates, and chilly winds.",
+                                "EmojiSolution": ["U+26C4", "U+26F8", "U+1F32C"],
+                                "DecoyEmojis": ["U+1F621", "U+1F622", "U+1F623", "U+1F624", "U+1F625", "U+1F626", "U+1F627", "U+1F628", "U+1F629", "U+1F62A", "U+1F62B", "U+1F62C", "U+1F62D", "U+1F62E", "U+1F62F", "U+1F630", "U+1F631", "U+1F632", "U+1F633"],
+                                "Difficulty": 6,
+                                "IsMultiplayerCompatible": true,
+                                "Tags": ["winter", "snow"]
+                            },
+                            {
+                                "ID": 99,
+                                "Title": "Desert Oasis",
+                                "Description": "Camels, palm trees, and shimmering mirages.",
+                                "EmojiSolution": ["U+1F42B", "U+1F334", "U+1F30B"],
+                                "DecoyEmojis": ["U+1F634", "U+1F635", "U+1F636", "U+1F637", "U+1F638", "U+1F639", "U+1F63A", "U+1F63B", "U+1F63C", "U+1F63D", "U+1F63E", "U+1F63F", "U+1F640", "U+1F641", "U+1F642", "U+1F643", "U+1F644", "U+1F645", "U+1F646"],
+                                "Difficulty": 7,
+                                "IsMultiplayerCompatible": true,
+                                "Tags": ["desert", "oasis"]
+                            },
+                            {
+                                "ID": 100,
+                                "Title": "Volcano Eruption",
+                                "Description": "Lava flows, ash clouds, and fiery explosions.",
+                                "EmojiSolution": ["U+1F30B", "U+1F32A", "U+1F525"],
+                                "DecoyEmojis": ["U+1F647", "U+1F648", "U+1F649", "U+1F64A", "U+1F64B", "U+1F64C", "U+1F64D", "U+1F64E", "U+1F64F", "U+1F650", "U+1F651", "U+1F652", "U+1F653", "U+1F654", "U+1F655", "U+1F656", "U+1F657", "U+1F658", "U+1F659"],
+                                "Difficulty": 8,
+                                "IsMultiplayerCompatible": true,
+                                "Tags": ["volcano", "eruption"]
+                            }
+                        
+                        
+                        
+                        
+                        
+                    
+                
+            
+
+
+
+
         ]
         
     
