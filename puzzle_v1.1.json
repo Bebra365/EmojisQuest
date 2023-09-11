@@ -1,0 +1,235 @@
+{
+    "version": "1.0",
+    "puzzles":
+    [
+        {
+            "ID": 1,
+            "Title": "Desert Animal",
+            "Description": "Known for its hump.",
+            "EmojiSolution": ["U+1F42B"],
+            "DecoyEmojis": ["U+1F417", "U+1F418", "U+1F40E", "U+1F410", "U+1F40D", "U+1F429", "U+1F428", "U+1F412", "U+1F411", "U+1F419", "U+1F41A", "U+1F41B", "U+1F41C", "U+1F41D", "U+1F41E", "U+1F41F", "U+1F421", "U+1F422", "U+1F424"],
+            "Difficulty": 2,
+            "IsMultiplayerCompatible": true,
+            "Tags": ["animal", "desert"]
+        },
+        {
+            "ID": 2,
+            "Title": "Morning Beverage",
+            "Description": "A popular hot drink to start the day.",
+            "EmojiSolution": ["U+2615"],
+            "DecoyEmojis": ["U+1F375", "U+1F376", "U+1F377", "U+1F378", "U+1F379", "U+1F37A", "U+1F37B", "U+1F37C", "U+1F37D", "U+1F37E", "U+1F942", "U+1F943", "U+1F944", "U+1F945", "U+1F946", "U+1F947", "U+1F948", "U+1F949", "U+1F950"],
+            "Difficulty": 3,
+            "IsMultiplayerCompatible": true,
+            "Tags": ["drink", "morning"]
+        },
+        {
+            "ID": 3,
+            "Title": "City Transport",
+            "Description": "Getting around in the city.",
+            "EmojiSolution": ["U+1F68D", "U+1F68A", "U+1F699"],
+            "DecoyEmojis": ["U+1F6B2", "U+1F6F4", "U+1F6F9", "U+1F68C", "U+1F68E", "U+1F690", "U+1F691", "U+1F692", "U+1F693", "U+1F694", "U+1F69A", "U+1F69B", "U+1F69C", "U+1F69D", "U+1F69E", "U+1F69F", "U+1F6A0", "U+1F6A1", "U+1F6A2"],
+            "Difficulty": 5,
+            "IsMultiplayerCompatible": true,
+            "Tags": ["city", "transport"]
+        },
+        {
+            "ID": 4,
+            "Title": "Tropical Vacation",
+            "Description": "Relaxing by the sea.",
+            "EmojiSolution": ["U+1F3D6", "U+1F334", "U+2600", "U+1F379"],
+            "DecoyEmojis": ["U+1F3DD", "U+1F30A", "U+1F3D5", "U+1F3D4", "U+1F3DC", "U+1F3DA", "U+1F3DB", "U+1F3D7", "U+1F3D8", "U+1F3D9", "U+1F3DE", "U+1F3DF", "U+1F3D0", "U+1F3D1", "U+1F3D2", "U+1F3D3", "U+1F3A0", "U+1F3A1", "U+1F3A2"],
+            "Difficulty": 7,
+            "IsMultiplayerCompatible": true,
+            "Tags": ["tropical", "vacation"]
+        },
+        {
+            "ID": 5,
+            "Title": "Night Sky",
+            "Description": "Gazing at the stars.",
+            "EmojiSolution": ["U+1F319", "U+1F4AB", "U+1F30C"],
+            "DecoyEmojis": ["U+1F31A", "U+1F31B", "U+1F31C", "U+1F31D", "U+1F31E", "U+1F31F", "U+1F320", "U+1F321", "U+1F324", "U+1F325", "U+1F326", "U+1F327", "U+1F328", "U+1F329", "U+1F32A", "U+1F32B", "U+1F32C", "U+1F32D", "U+1F32E"],
+            "Difficulty": 6,
+            "IsMultiplayerCompatible": true,
+            "Tags": ["night", "sky"]
+        },
+        {
+            "ID": 6,
+            "Title": "Mountain Adventure",
+            "Description": "Climbing to the peak.",
+            "EmojiSolution": ["U+1F3D4", "U+1F3C6", "U+1F3C2"],
+            "DecoyEmojis": ["U+1F3D5", "U+1F3D6", "U+1F3D7", "U+1F3D8", "U+1F3D9", "U+1F3DA", "U+1F3DB", "U+1F3DC", "U+1F3DD", "U+1F3DE", "U+1F3DF", "U+1F3E0", "U+1F3E1", "U+1F3E2", "U+1F3E3", "U+1F3E4", "U+1F3E5", "U+1F3E6", "U+1F3E7"],
+            "Difficulty": 8,
+            "IsMultiplayerCompatible": true,
+            "Tags": ["mountain", "adventure"]
+        },
+        {
+            "ID": 7,
+            "Title": "Winter Sports",
+            "Description": "Sliding on snow.",
+            "EmojiSolution": ["U+1F3C2", "U+2744", "U+1F3BF"],
+            "DecoyEmojis": ["U+1F3C0", "U+1F3C1", "U+1F3C3", "U+1F3C4", "U+1F3C5", "U+1F3C6", "U+1F3C7", "U+1F3C8", "U+1F3C9", "U+1F3CA", "U+1F3CB", "U+1F3CC", "U+1F3CD", "U+1F3CE", "U+1F3CF", "U+1F3D0", "U+1F3D1", "U+1F3D2", "U+1F3D3"],
+            "Difficulty": 7,
+            "IsMultiplayerCompatible": true,
+            "Tags": ["winter", "sports"]
+        },
+        {
+            "ID": 8,
+            "Title": "Rainy Day",
+            "Description": "When it pours from the sky.",
+            "EmojiSolution": ["U+2614", "U+1F327", "U+1F4A7"],
+            "DecoyEmojis": ["U+1F326", "U+1F325", "U+1F324", "U+1F323", "U+1F322", "U+1F321", "U+1F320", "U+1F31F", "U+1F31E", "U+1F31D", "U+1F31C", "U+1F31B", "U+1F31A", "U+1F319", "U+1F318", "U+1F317", "U+1F316", "U+1F315", "U+1F314"],
+            "Difficulty": 5,
+            "IsMultiplayerCompatible": true,
+            "Tags": ["rain", "weather"]
+        },
+        {
+            "ID": 9,
+            "Title": "Forest Adventure",
+            "Description": "Camping under the trees.",
+            "EmojiSolution": ["U+1F3D5", "U+1F332", "U+1F3E1"],
+            "DecoyEmojis": ["U+1F3D4", "U+1F3D6", "U+1F3D7", "U+1F3D8", "U+1F3D9", "U+1F3DA", "U+1F3DB", "U+1F3DC", "U+1F3DD", "U+1F3DE", "U+1F3DF", "U+1F3E0", "U+1F3E2", "U+1F3E3", "U+1F3E4", "U+1F3E5", "U+1F3E6", "U+1F3E7", "U+1F3E8"],
+            "Difficulty": 6,
+            "IsMultiplayerCompatible": true,
+            "Tags": ["forest", "adventure"]
+        },
+        {
+            "ID": 10,
+            "Title": "Ocean Life",
+            "Description": "Creatures of the deep sea.",
+            "EmojiSolution": ["U+1F41F", "U+1F420", "U+1F421"],
+            "DecoyEmojis": ["U+1F41A", "U+1F41B", "U+1F41C", "U+1F41D", "U+1F41E", "U+1F419", "U+1F418", "U+1F417", "U+1F416", "U+1F415", "U+1F414", "U+1F413", "U+1F412", "U+1F411", "U+1F410", "U+1F40F", "U+1F40E", "U+1F40D", "U+1F40C"],
+            "Difficulty": 6,
+            "IsMultiplayerCompatible": true,
+            "Tags": ["ocean", "animals"]
+        },
+        
+            {
+                "ID": 10,
+                "Title": "Ocean Life",
+                "Description": "Creatures of the deep sea.",
+                "EmojiSolution": ["U+1F41F", "U+1F420", "U+1F421"],
+                "DecoyEmojis": ["U+1F41A", "U+1F41B", "U+1F41C", "U+1F41D", "U+1F41E", "U+1F419", "U+1F418", "U+1F417", "U+1F416", "U+1F415", "U+1F414", "U+1F413", "U+1F412", "U+1F411", "U+1F410", "U+1F40F", "U+1F40E", "U+1F40D", "U+1F40C"],
+                "Difficulty": 6,
+                "IsMultiplayerCompatible": true,
+                "Tags": ["ocean", "animals"]
+            },
+            {
+                "ID": 11,
+                "Title": "Space Exploration",
+                "Description": "Journey to the stars.",
+                "EmojiSolution": ["U+1F4AB", "U+1F680", "U+1F30C"],
+                "DecoyEmojis": ["U+1F4AA", "U+1F4AC", "U+1F4AD", "U+1F4AE", "U+1F4AF", "U+1F4B0", "U+1F4B1", "U+1F4B2", "U+1F4B3", "U+1F4B4", "U+1F4B5", "U+1F4B6", "U+1F4B7", "U+1F4B8", "U+1F4B9", "U+1F4BA", "U+1F4BB", "U+1F4BC", "U+1F4BD"],
+                "Difficulty": 7,
+                "IsMultiplayerCompatible": true,
+                "Tags": ["space", "exploration"]
+            },
+            {
+                "ID": 12,
+                "Title": "Farm Life",
+                "Description": "Animals on the farm.",
+                "EmojiSolution": ["U+1F414", "U+1F411", "U+1F413"],
+                "DecoyEmojis": ["U+1F40A", "U+1F40B", "U+1F40C", "U+1F40D", "U+1F40E", "U+1F40F", "U+1F410", "U+1F412", "U+1F415", "U+1F416", "U+1F417", "U+1F418", "U+1F419", "U+1F41A", "U+1F41B", "U+1F41C", "U+1F41D", "U+1F41E", "U+1F41F"],
+                "Difficulty": 5,
+                "IsMultiplayerCompatible": true,
+                "Tags": ["farm", "animals"]
+            },
+            {
+                "ID": 13,
+                "Title": "Birthday Celebration",
+                "Description": "A special day with cake and gifts.",
+                "EmojiSolution": ["U+1F382", "U+1F389", "U+1F381"],
+                "DecoyEmojis": ["U+1F370", "U+1F371", "U+1F372", "U+1F373", "U+1F374", "U+1F375", "U+1F376", "U+1F377", "U+1F378", "U+1F379", "U+1F37A", "U+1F37B", "U+1F37C", "U+1F37D", "U+1F37E", "U+1F37F", "U+1F380", "U+1F383", "U+1F384"],
+                "Difficulty": 4,
+                "IsMultiplayerCompatible": true,
+                "Tags": ["birthday", "celebration"]
+            },
+            {
+                "ID": 14,
+                "Title": "Jungle Adventure",
+                "Description": "Exploring the wild jungle.",
+                "EmojiSolution": ["U+1F333", "U+1F34E", "U+1F406"],
+                "DecoyEmojis": ["U+1F331", "U+1F332", "U+1F334", "U+1F335", "U+1F337", "U+1F338", "U+1F339", "U+1F33A", "U+1F33B", "U+1F33C", "U+1F33D", "U+1F33E", "U+1F33F", "U+1F340", "U+1F341", "U+1F342", "U+1F343", "U+1F344", "U+1F345"],
+                "Difficulty": 6,
+                "IsMultiplayerCompatible": true,
+                "Tags": ["jungle", "adventure"]
+            },
+            {
+                "ID": 15,
+                "Title": "Under the Sea",
+                "Description": "Mysteries of the ocean.",
+                "EmojiSolution": ["U+1F420", "U+1F41F", "U+1F30A"],
+                "DecoyEmojis": ["U+1F41A", "U+1F41B", "U+1F41C", "U+1F41D", "U+1F41E", "U+1F419", "U+1F418", "U+1F417", "U+1F416", "U+1F415", "U+1F414", "U+1F413", "U+1F412", "U+1F411", "U+1F410", "U+1F40F", "U+1F40E", "U+1F40D", "U+1F40C"],
+                "Difficulty": 5,
+                "IsMultiplayerCompatible": true,
+                "Tags": ["ocean", "sea"]
+            },
+            {
+                "ID": 16,
+                "Title": "Winter Wonderland",
+                "Description": "Snowy landscapes and fun.",
+                "EmojiSolution": ["U+2744", "U+1F3C2", "U+26C4"],
+                "DecoyEmojis": ["U+2600", "U+2601", "U+2602", "U+2603", "U+2614", "U+2615", "U+263C", "U+2640", "U+2641", "U+2642", "U+2643", "U+2644", "U+2645", "U+2646", "U+2647", "U+2648", "U+2649", "U+264A", "U+264B"],
+                "Difficulty": 6,
+                "IsMultiplayerCompatible": true,
+                "Tags": ["winter", "snow"]
+            },
+            {
+                "ID": 17,
+                "Title": "Safari Adventure",
+                "Description": "Wild animals in Africa.",
+                "EmojiSolution": ["U+1F405", "U+1F98C", "U+1F42B"],
+                "DecoyEmojis": ["U+1F400", "U+1F401", "U+1F402", "U+1F403", "U+1F404", "U+1F406", "U+1F407", "U+1F408", "U+1F409", "U+1F40A", "U+1F40B", "U+1F40C", "U+1F40D", "U+1F40E", "U+1F40F", "U+1F410", "U+1F411", "U+1F412", "U+1F413"],
+                "Difficulty": 7,
+                "IsMultiplayerCompatible": true,
+                "Tags": ["safari", "animals"]
+            },
+            {
+                "ID": 18,
+                "Title": "City Sights",
+                "Description": "Tourist attractions in the city.",
+                "EmojiSolution": ["U+1F3E0", "U+1F3A1", "U+1F5FC"],
+                "DecoyEmojis": ["U+1F3D4", "U+1F3D5", "U+1F3D6", "U+1F3D7", "U+1F3D8", "U+1F3D9", "U+1F3DA", "U+1F3DB", "U+1F3DC", "U+1F3DD", "U+1F3DE", "U+1F3DF", "U+1F3E1", "U+1F3E2", "U+1F3E3", "U+1F3E4", "U+1F3E5", "U+1F3E6", "U+1F3E7"],
+                "Difficulty": 6,
+                "IsMultiplayerCompatible": true,
+                "Tags": ["city", "tourist"]
+            },
+            {
+                "ID": 19,
+                "Title": "Beach Day",
+                "Description": "Sunny day at the beach.",
+                "EmojiSolution": ["U+1F3D6", "U+1F334", "U+2600"],
+                "DecoyEmojis": ["U+1F3D4", "U+1F3D5", "U+1F3D7", "U+1F3D8", "U+1F3D9", "U+1F3DA", "U+1F3DB", "U+1F3DC", "U+1F3DD", "U+1F3DE", "U+1F3DF", "U+1F3E0", "U+1F3E1", "U+1F3E2", "U+1F3E3", "U+1F3E4", "U+1F3E5", "U+1F3E6", "U+1F3E7"],
+                "Difficulty": 5,
+                "IsMultiplayerCompatible": true,
+                "Tags": ["beach", "sunny"]
+            },
+            {
+                "ID": 20,
+                "Title": "Forest Camping",
+                "Description": "Night under the stars in the woods.",
+                "EmojiSolution": ["U+1F3D5", "U+1F332", "U+1F3E1", "U+1F319"],
+                "DecoyEmojis": ["U+1F3D4", "U+1F3D6", "U+1F3D7", "U+1F3D8", "U+1F3D9", "U+1F3DA", "U+1F3DB", "U+1F3DC", "U+1F3DD", "U+1F3DE", "U+1F3DF", "U+1F3E0", "U+1F3E2", "U+1F3E3", "U+1F3E4", "U+1F3E5", "U+1F3E6", "U+1F3E7", "U+1F3E8"],
+                "Difficulty": 7,
+                "IsMultiplayerCompatible": true,
+                "Tags": ["forest", "camping"]
+            }
+        ]
+        
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
