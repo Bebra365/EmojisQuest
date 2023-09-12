@@ -1,0 +1,4452 @@
+openapi: 3.0.1
+info:
+  title: UGC Service Admin
+  description: "# Overview\n\nThis is the REST API documentation for User Generated Content Admin (UGC) Open Beta release using the Service Account authentication system. This is the admin facing API. A Unity package with easy integration and examples for Unity games is also available.<br/><br/># Authentication\n\nPlease visit [this page](https://services.docs.unity.com/docs/service-account-auth) to learn more about authenticating with Unity's admin APIs.         \n"
+  version: v1
+servers:
+  - url: https://services.api.unity.com/ugc
+paths:
+  '/v1/projects/{projectId}/environments/{environmentId}/content/{contentId}':
+    get:
+      tags:
+        - Content
+      summary: Get details about a content item
+      operationId: GetContent
+      parameters:
+        - name: projectId
+          in: path
+          description: Project that this content belongs to
+          required: true
+          schema:
+            type: string
+        - name: environmentId
+          in: path
+          description: Environment that this content belongs to
+          required: true
+          schema:
+            type: string
+        - name: contentId
+          in: path
+          description: Content id
+          required: true
+          schema:
+            type: string
+        - name: includeStatistics
+          in: query
+          description: If content stats should be included in the query
+          schema:
+            type: boolean
+            default: false
+        - name: X-Delegated-User-Id
+          in: header
+          description: Delegated user id
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContentDTO'
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorInfo'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorInfo'
+      security:
+        - Admin:
+            - user_generated_content.admin.all
+    delete:
+      tags:
+        - Content
+      summary: Soft delete a content item
+      operationId: DeleteContent
+      parameters:
+        - name: projectId
+          in: path
+          description: Project that this content belongs to
+          required: true
+          schema:
+            type: string
+        - name: environmentId
+          in: path
+          description: Environment that this content belongs to
+          required: true
+          schema:
+            type: string
+        - name: contentId
+          in: path
+          description: Content id
+          required: true
+          schema:
+            type: string
+        - name: X-Delegated-User-Id
+          in: header
+          description: Delegated user id
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorInfo'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorInfo'
+      security:
+        - Admin:
+            - user_generated_content.admin.all
+  '/v1/projects/{projectId}/environments/{environmentId}/content/{contentId}/downloads':
+    get:
+      tags:
+        - Content
+      summary: Get content statistics
+      operationId: GetContentDownloads
+      parameters:
+        - name: projectId
+          in: path
+          description: Project that this content belongs to
+          required: true
+          schema:
+            type: string
+        - name: environmentId
+          in: path
+          description: Environment that this content belongs to
+          required: true
+          schema:
+            type: string
+        - name: contentId
+          in: path
+          description: Content id
+          required: true
+          schema:
+            type: string
+        - name: X-Delegated-User-Id
+          in: header
+          description: Delegated user id
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContentDownloadStats'
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorInfo'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorInfo'
+      security:
+        - Admin:
+            - user_generated_content.admin.all
+  '/v1/projects/{projectId}/environments/{environmentId}/content/search':
+    get:
+      tags:
+        - Content
+      summary: Search all content items in a given project and environment
+      operationId: SearchContent
+      parameters:
+        - name: projectId
+          in: path
+          description: Content that belongs to this project
+          required: true
+          schema:
+            type: string
+        - name: environmentId
+          in: path
+          description: Content that belongs to this environment
+          required: true
+          schema:
+            type: string
+        - name: offset
+          in: query
+          description: The amount of results to skip
+          schema:
+            maximum: 2147483647
+            minimum: 0
+            type: integer
+            format: int32
+        - name: limit
+          in: query
+          description: The amount of results to take
+          schema:
+            maximum: 100
+            minimum: 0
+            type: integer
+            format: int32
+        - name: sortBys
+          in: query
+          description: 'The field to use to sort by in ascending order, prefix - for descending'
+          schema:
+            type: array
+            items:
+              type: string
+        - name: search
+          in: query
+          description: Only return results with this search term in their name
+          schema:
+            type: string
+        - name: tags
+          in: query
+          description: Only return results with these tags
+          schema:
+            type: array
+            items:
+              type: string
+        - name: filters
+          in: query
+          description: "You can filter on any field in the DTO<br />\r\nSyntax for filters is: {field},{operator},{value}<br />\r\nThe operators are: eq (equal to), neq (not equal to), gt (greater than), gte (greater than or equal), lt (less than), lte (less than or equal)<br />\r\nThe field can be nested up to two levels. Ex: \"field.nestedField.nestedNestedField\"<br />\r\nfilters=\"deletedAt,eq,null\" will only return entities that have not been deleted<br />"
+          schema:
+            type: array
+            items:
+              type: string
+        - name: includeTotal
+          in: query
+          description: Should the result include the total count of objects available to page
+          schema:
+            type: boolean
+        - name: includeStatistics
+          in: query
+          description: If content stats should be included in the content DTO
+          schema:
+            type: boolean
+            default: false
+        - name: X-Delegated-User-Id
+          in: header
+          description: Delegated user id
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContentDTOPagedResult'
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorInfo'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorInfo'
+      security:
+        - Admin:
+            - user_generated_content.admin.all
+  '/v1/projects/{projectId}/environments/{environmentId}/content/{contentId}/details':
+    put:
+      tags:
+        - Content
+      summary: Update details about a content item
+      operationId: UpdateDetails
+      parameters:
+        - name: projectId
+          in: path
+          description: Project that this content belongs to
+          required: true
+          schema:
+            type: string
+        - name: environmentId
+          in: path
+          description: Environment that this content belongs to
+          required: true
+          schema:
+            type: string
+        - name: contentId
+          in: path
+          description: Content id
+          required: true
+          schema:
+            type: string
+        - name: X-Delegated-User-Id
+          in: header
+          description: Delegated user id
+          schema:
+            type: string
+      requestBody:
+        description: Request information for content
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateContentRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/UpdateContentRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/UpdateContentRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContentDTO'
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorInfo'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorInfo'
+      security:
+        - Admin:
+            - user_generated_content.admin.all
+  '/v1/projects/{projectId}/environments/{environmentId}/content/{contentId}/visibility':
+    put:
+      tags:
+        - Content
+      summary: Update content visibility
+      operationId: UpdateContentVisibility
+      parameters:
+        - name: projectId
+          in: path
+          description: Project that this content belongs to
+          required: true
+          schema:
+            type: string
+        - name: environmentId
+          in: path
+          description: Environment that this content belongs to
+          required: true
+          schema:
+            type: string
+        - name: contentId
+          in: path
+          description: Content id
+          required: true
+          schema:
+            type: string
+        - name: X-Delegated-User-Id
+          in: header
+          description: Delegated user id
+          schema:
+            type: string
+      requestBody:
+        description: Request information for content
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateContentVisibilityRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/UpdateContentVisibilityRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/UpdateContentVisibilityRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContentDTO'
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorInfo'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorInfo'
+      security:
+        - Admin:
+            - user_generated_content.admin.all
+  '/v1/projects/{projectId}/environments/{environmentId}/content/{contentId}/restore':
+    post:
+      tags:
+        - Content
+      summary: Restore a deleted content item
+      operationId: Restore
+      parameters:
+        - name: projectId
+          in: path
+          description: Project that this content belongs to
+          required: true
+          schema:
+            type: string
+        - name: environmentId
+          in: path
+          description: Environment that this content belongs to
+          required: true
+          schema:
+            type: string
+        - name: contentId
+          in: path
+          description: Content id
+          required: true
+          schema:
+            type: string
+        - name: X-Delegated-User-Id
+          in: header
+          description: Delegated user id
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContentDTO'
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorInfo'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorInfo'
+      security:
+        - Admin:
+            - user_generated_content.admin.all
+  '/v1/projects/{projectId}/environments/{environmentId}/content/{contentId}/rating':
+    put:
+      tags:
+        - Content
+      summary: Add a new user rating for content
+      operationId: CreateUserRating
+      parameters:
+        - name: projectId
+          in: path
+          description: Project that this content belongs to
+          required: true
+          schema:
+            type: string
+        - name: environmentId
+          in: path
+          description: Environment that this content belongs to
+          required: true
+          schema:
+            type: string
+        - name: contentId
+          in: path
+          description: Content id
+          required: true
+          schema:
+            type: string
+        - name: X-Delegated-User-Id
+          in: header
+          description: Delegated user id
+          schema:
+            type: string
+      requestBody:
+        description: Request information for content rating
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ContentRatingRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/ContentRatingRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ContentRatingRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContentUserRatingDTO'
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorInfo'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorInfo'
+      security:
+        - Admin:
+            - user_generated_content.admin.all
+    get:
+      tags:
+        - Content
+      summary: Get content rating for user
+      operationId: GetUserRating
+      parameters:
+        - name: projectId
+          in: path
+          description: Project that this content belongs to
+          required: true
+          schema:
+            type: string
+        - name: environmentId
+          in: path
+          description: Environment that this content belongs to
+          required: true
+          schema:
+            type: string
+        - name: contentId
+          in: path
+          description: Content id
+          required: true
+          schema:
+            type: string
+        - name: X-Delegated-User-Id
+          in: header
+          description: Delegated user id
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContentUserRatingDTO'
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorInfo'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorInfo'
+      security:
+        - Admin:
+            - user_generated_content.admin.all
+  '/v1/projects/{projectId}/environments/{environmentId}/content/trends/{trendType}':
+    get:
+      tags:
+        - Content
+      summary: Get content trends
+      operationId: GetContentTrendsList
+      parameters:
+        - name: projectId
+          in: path
+          description: Project to query content trends
+          required: true
+          schema:
+            type: string
+        - name: environmentId
+          in: path
+          description: Environment to query content trends
+          required: true
+          schema:
+            type: string
+        - name: trendType
+          in: path
+          description: 'Trend type: TopRated, MostDownloaded, Newest, Popular, Trending, Engaging'
+          required: true
+          schema:
+            type: string
+        - name: offset
+          in: query
+          description: The amount of results to skip
+          schema:
+            maximum: 2147483647
+            minimum: 0
+            type: integer
+            format: int32
+        - name: limit
+          in: query
+          description: The amount of results to take
+          schema:
+            maximum: 100
+            minimum: 0
+            type: integer
+            format: int32
+        - name: sortBy
+          in: query
+          description: 'The field to use to sort by in order, prefix - for descending'
+          schema:
+            type: string
+        - name: includeTotal
+          in: query
+          description: Should the result include the total count of objects available to page
+          schema:
+            type: boolean
+        - name: X-Delegated-User-Id
+          in: header
+          description: Delegated user id
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContentDTOPagedResult'
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorInfo'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorInfo'
+      security:
+        - Admin:
+            - user_generated_content.admin.all
+  '/v1/projects/{projectId}/environments/{environmentId}/content/{contentId}/versions':
+    get:
+      tags:
+        - ContentVersions
+      summary: Search all versions of a content item in a given project and environment
+      operationId: SearchContentVersions
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: environmentId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: contentId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: offset
+          in: query
+          schema:
+            maximum: 2147483647
+            minimum: 0
+            type: integer
+            format: int32
+        - name: limit
+          in: query
+          schema:
+            maximum: 100
+            minimum: 0
+            type: integer
+            format: int32
+        - name: sortBys
+          in: query
+          schema:
+            type: array
+            items:
+              type: string
+        - name: includeTotal
+          in: query
+          schema:
+            type: boolean
+        - name: X-Delegated-User-Id
+          in: header
+          description: Delegated user id
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContentVersionDTOPagedResult'
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorInfo'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorInfo'
+      security:
+        - Admin:
+            - user_generated_content.admin.all
+  '/v1/environments/project/{projectId}':
+    get:
+      tags:
+        - Environment
+      summary: Get all the environments for a given project id
+      operationId: GetProjectEnvironments
+      parameters:
+        - name: projectId
+          in: path
+          description: The project id
+          required: true
+          schema:
+            type: string
+        - name: includeStatistics
+          in: query
+          description: If environment stats should be included in the query
+          schema:
+            type: boolean
+        - name: X-Delegated-User-Id
+          in: header
+          description: Delegated user id
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EnvironmentDTO'
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorInfo'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorInfo'
+      security:
+        - Admin:
+            - user_generated_content.admin.all
+  '/v1/projects/{projectId}/environments/{environmentId}/content/moderation/logs':
+    get:
+      tags:
+        - Moderation
+      summary: Search for content moderation audit logs
+      operationId: SearchContentModerationAuditLogs
+      parameters:
+        - name: projectId
+          in: path
+          description: The logs in this project
+          required: true
+          schema:
+            type: string
+        - name: environmentId
+          in: path
+          description: The logs in this environment
+          required: true
+          schema:
+            type: string
+        - name: offset
+          in: query
+          description: The amount of results to skip
+          schema:
+            maximum: 2147483647
+            minimum: 0
+            type: integer
+            format: int32
+        - name: limit
+          in: query
+          description: The amount of results to take
+          schema:
+            maximum: 100
+            minimum: 0
+            type: integer
+            format: int32
+        - name: sortBys
+          in: query
+          description: 'The field to use to sort by in ascending order, prefix - for descending'
+          schema:
+            type: array
+            items:
+              type: string
+        - name: search
+          in: query
+          description: Only return results with this search term in their name
+          schema:
+            type: string
+        - name: filters
+          in: query
+          description: "You can filter on any field in the DTO<br />\r\nSyntax for filters is: {field},{operator},{value}<br />\r\nThe operators are: eq (equal to), neq (not equal to), gt (greater than), gte (greater than or equal), lt (less than), lte (less than or equal)<br />\r\nThe field can be nested up to two levels. Ex: \"field.nestedField.nestedNestedField\"<br />\r\nfilters=\"deletedAt,eq,null\" will only return entities that have not been deleted<br />"
+          schema:
+            type: array
+            items:
+              type: string
+        - name: includeTotal
+          in: query
+          description: Should the result include the total count of objects available to page
+          schema:
+            type: boolean
+        - name: includeContent
+          in: query
+          description: Should the result include the content object
+          schema:
+            type: boolean
+        - name: includeModerator
+          in: query
+          description: Should the result include the moderator object
+          schema:
+            type: boolean
+        - name: X-Delegated-User-Id
+          in: header
+          description: Delegated user id
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContentModerationAuditLogDTOPagedResult'
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorInfo'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorInfo'
+      security:
+        - Admin:
+            - user_generated_content.admin.all
+  '/v1/projects/{projectId}/environments/{environmentId}/player/banned/search':
+    get:
+      tags:
+        - Player
+      summary: Search for banned players
+      operationId: SearchBannedPlayers
+      parameters:
+        - name: projectId
+          in: path
+          description: The banned players in this project
+          required: true
+          schema:
+            type: string
+        - name: environmentId
+          in: path
+          description: The banned players in this environment
+          required: true
+          schema:
+            type: string
+        - name: offset
+          in: query
+          description: The amount of results to skip
+          schema:
+            maximum: 2147483647
+            minimum: 0
+            type: integer
+            format: int32
+        - name: limit
+          in: query
+          description: The amount of results to take
+          schema:
+            maximum: 100
+            minimum: 0
+            type: integer
+            format: int32
+        - name: sortBys
+          in: query
+          description: 'The field to use to sort by in ascending order, prefix - for descending'
+          schema:
+            type: array
+            items:
+              type: string
+        - name: search
+          in: query
+          description: Only return results with this search term in their name
+          schema:
+            type: string
+        - name: filters
+          in: query
+          description: List of filters for the results
+          schema:
+            type: array
+            items:
+              type: string
+        - name: includeTotal
+          in: query
+          description: Should the result include the total count of objects available to page
+          schema:
+            type: boolean
+        - name: includeStatistics
+          in: query
+          description: If content stats should be included in the query
+          schema:
+            type: boolean
+            default: false
+        - name: X-Delegated-User-Id
+          in: header
+          description: Delegated user id
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BannedPlayerDTOPagedResult'
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorInfo'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorInfo'
+      security:
+        - Admin:
+            - user_generated_content.admin.all
+  '/v1/projects/{projectId}/environments/{environmentId}/player/moderator/search':
+    get:
+      tags:
+        - Player
+      summary: Search for moderators
+      operationId: SearchModerators
+      parameters:
+        - name: projectId
+          in: path
+          description: The moderators in this project
+          required: true
+          schema:
+            type: string
+        - name: environmentId
+          in: path
+          description: The moderators in this environment
+          required: true
+          schema:
+            type: string
+        - name: offset
+          in: query
+          description: The amount of results to skip
+          schema:
+            maximum: 2147483647
+            minimum: 0
+            type: integer
+            format: int32
+        - name: limit
+          in: query
+          description: The amount of results to take
+          schema:
+            maximum: 100
+            minimum: 0
+            type: integer
+            format: int32
+        - name: sortBys
+          in: query
+          description: 'The field to use to sort by in ascending order, prefix - for descending'
+          schema:
+            type: array
+            items:
+              type: string
+        - name: search
+          in: query
+          description: Only return results with this search term in their name
+          schema:
+            type: string
+        - name: filters
+          in: query
+          description: List of filters for the results
+          schema:
+            type: array
+            items:
+              type: string
+        - name: includeTotal
+          in: query
+          description: Should the result include the total count of objects available to page
+          schema:
+            type: boolean
+        - name: includeStatistics
+          in: query
+          description: If content stats should be included in the query
+          schema:
+            type: boolean
+            default: false
+        - name: X-Delegated-User-Id
+          in: header
+          description: Delegated user id
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ModeratorDTOPagedResult'
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorInfo'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorInfo'
+      security:
+        - Admin:
+            - user_generated_content.admin.all
+  '/v1/projects/{projectId}/environments/{environmentId}/player/moderator':
+    post:
+      tags:
+        - Player
+      summary: Assign a player to be a moderator
+      operationId: CreateModerator
+      parameters:
+        - name: projectId
+          in: path
+          description: Create the moderator in this project
+          required: true
+          schema:
+            type: string
+        - name: environmentId
+          in: path
+          description: Create the moderator in this environment
+          required: true
+          schema:
+            type: string
+        - name: X-Delegated-User-Id
+          in: header
+          description: Delegated user id
+          schema:
+            type: string
+      requestBody:
+        description: The player id and player role id
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateModeratorRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/CreateModeratorRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CreateModeratorRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ModeratorDTO'
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorInfo'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorInfo'
+      security:
+        - Admin:
+            - user_generated_content.admin.all
+  '/v1/projects/{projectId}/environments/{environmentId}/player/moderator/{playerId}':
+    put:
+      tags:
+        - Player
+      summary: Update an existing moderator
+      operationId: UpdateModerator
+      parameters:
+        - name: projectId
+          in: path
+          description: Update the moderator in this project
+          required: true
+          schema:
+            type: string
+        - name: environmentId
+          in: path
+          description: Update the moderator in this environment
+          required: true
+          schema:
+            type: string
+        - name: playerId
+          in: path
+          description: Update the moderator with this id
+          required: true
+          schema:
+            type: string
+        - name: X-Delegated-User-Id
+          in: header
+          description: Delegated user id
+          schema:
+            type: string
+      requestBody:
+        description: player role id to assign to this moderator
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateModeratorRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/UpdateModeratorRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/UpdateModeratorRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ModeratorDTO'
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorInfo'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorInfo'
+      security:
+        - Admin:
+            - user_generated_content.admin.all
+  '/v1/projects/{projectId}/environments/{environmentId}/player/moderator/{playerId}/remove':
+    post:
+      tags:
+        - Player
+      summary: Remove an existing moderator
+      operationId: RemoveModerator
+      parameters:
+        - name: projectId
+          in: path
+          description: Remove the moderator in this project
+          required: true
+          schema:
+            type: string
+        - name: environmentId
+          in: path
+          description: Remove the moderator in this environment
+          required: true
+          schema:
+            type: string
+        - name: playerId
+          in: path
+          description: Remove the moderator with this id
+          required: true
+          schema:
+            type: string
+        - name: X-Delegated-User-Id
+          in: header
+          description: Delegated user id
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorInfo'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorInfo'
+      security:
+        - Admin:
+            - user_generated_content.admin.all
+  '/v1/projects/{projectId}/environments/{environmentId}/player/roles':
+    get:
+      tags:
+        - Player
+      summary: Get project player roles list
+      operationId: GetPlayerRoles
+      parameters:
+        - name: projectId
+          in: path
+          description: The player roles in this project
+          required: true
+          schema:
+            type: string
+        - name: environmentId
+          in: path
+          description: The player roles in this environment
+          required: true
+          schema:
+            type: string
+        - name: X-Delegated-User-Id
+          in: header
+          description: Delegated user id
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PlayerRoleDTO'
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorInfo'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorInfo'
+      security:
+        - Admin:
+            - user_generated_content.admin.all
+  '/v1/projects/{projectId}/environments/{environmentId}/player/search':
+    get:
+      tags:
+        - Player
+      summary: Search for creators
+      operationId: SearchEnvironmentPlayers
+      parameters:
+        - name: projectId
+          in: path
+          description: The creators in this project
+          required: true
+          schema:
+            type: string
+        - name: environmentId
+          in: path
+          description: The creators in this environment
+          required: true
+          schema:
+            type: string
+        - name: offset
+          in: query
+          description: The amount of results to skip
+          schema:
+            maximum: 2147483647
+            minimum: 0
+            type: integer
+            format: int32
+        - name: limit
+          in: query
+          description: The amount of results to take
+          schema:
+            maximum: 100
+            minimum: 0
+            type: integer
+            format: int32
+        - name: sortBys
+          in: query
+          description: 'The field to use to sort by in ascending order, prefix - for descending'
+          schema:
+            type: array
+            items:
+              type: string
+        - name: search
+          in: query
+          description: Only return results with this search term in their name
+          schema:
+            type: string
+        - name: filters
+          in: query
+          description: List of filters for the results
+          schema:
+            type: array
+            items:
+              type: string
+        - name: includeTotal
+          in: query
+          description: Should the result include the total count of objects available to page
+          schema:
+            type: boolean
+        - name: X-Delegated-User-Id
+          in: header
+          description: Delegated user id
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlayerStatisticsDTOPagedResult'
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorInfo'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorInfo'
+      security:
+        - Admin:
+            - user_generated_content.admin.all
+  '/v1/projects/{projectId}':
+    post:
+      tags:
+        - Project
+      summary: Create new project
+      operationId: CreateProject
+      parameters:
+        - name: projectId
+          in: path
+          description: Project identifier
+          required: true
+          schema:
+            type: string
+        - name: X-Delegated-User-Id
+          in: header
+          description: Delegated user id
+          schema:
+            type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                Description:
+                  maxLength: 10000
+                  type: string
+                  description: Description of the project
+                Threshold:
+                  maximum: 4294967295
+                  minimum: 0
+                  type: integer
+                  description: Threshold of how many flags it takes to hide content in the project
+                  format: int32
+                ReviewRule:
+                  $ref: '#/components/schemas/ProjectReviewRule'
+                Enabled:
+                  type: boolean
+                  description: If this project is enabled it will be publicly visible in the UGC Portal
+                IsDeletionPermanent:
+                  type: boolean
+                  description: "Flag for Project to allow hard deletion of Content and associated entities.\r\nIf set to true for the project, any content deletion is permanent. If set to false, soft deletion will occur instead."
+                Thumbnail:
+                  type: string
+                  description: Thumbnail of the project
+                  format: binary
+            encoding:
+              Description:
+                style: form
+              Threshold:
+                style: form
+              ReviewRule:
+                style: form
+              Enabled:
+                style: form
+              IsDeletionPermanent:
+                style: form
+              Thumbnail:
+                style: form
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectDTO'
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorInfo'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorInfo'
+      security:
+        - Admin:
+            - user_generated_content.admin.all
+    put:
+      tags:
+        - Project
+      summary: Update details about a project
+      operationId: UpdateProject
+      parameters:
+        - name: projectId
+          in: path
+          description: Project that this content belongs to
+          required: true
+          schema:
+            type: string
+        - name: X-Delegated-User-Id
+          in: header
+          description: Delegated user id
+          schema:
+            type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              required:
+                - Name
+                - UseUgcCdn
+              type: object
+              properties:
+                Name:
+                  maxLength: 2500
+                  type: string
+                  description: Display name of the project. Max 2500 because of index
+                Description:
+                  maxLength: 10000
+                  type: string
+                  description: Description of the project
+                Threshold:
+                  maximum: 4294967295
+                  minimum: 0
+                  type: integer
+                  description: Threshold of how many flags it takes to hide content in the project
+                  format: int32
+                ReviewRule:
+                  $ref: '#/components/schemas/ProjectReviewRule'
+                Enabled:
+                  type: boolean
+                  description: If this project is enabled it will be publicly visible in the UGC Portal
+                IsDeletionPermanent:
+                  type: boolean
+                  description: "Flag for Project to allow hard deletion of Content and associated entities.\r\nIf set to true for the project, any content deletion is permanent. If set to false, soft deletion will occur instead."
+                AppleClientId:
+                  maxLength: 100
+                  type: string
+                  description: Apple Authentication Provider Client ID
+                FacebookClientId:
+                  maxLength: 100
+                  type: string
+                  description: Facebook Authentication Provider Client ID
+                GoogleClientId:
+                  maxLength: 100
+                  type: string
+                  description: Google Authentication Provider Client ID
+                SteamAppId:
+                  maxLength: 100
+                  type: string
+                  description: Steam Authentication Provider Application ID
+                SteamApiKey:
+                  maxLength: 100
+                  type: string
+                  description: Steam Authentication Provider API Key
+                OidcName:
+                  maxLength: 255
+                  type: string
+                  description: OpenID Connect (OIDC) Provider Name
+                OidcClientId:
+                  maxLength: 100
+                  type: string
+                  description: OpenID Connect (OIDC) Provider Client ID
+                OidcIssuerUrl:
+                  maxLength: 2048
+                  type: string
+                  description: OpenID Connect (OIDC) Provider Issuer URL
+                AppleAppStoreUrl:
+                  maxLength: 2048
+                  type: string
+                  description: Link to Apple App Store to download game
+                  format: uri
+                GooglePlayStoreUrl:
+                  maxLength: 2048
+                  type: string
+                  description: Link to Google Play Store to download game
+                  format: uri
+                GogStoreUrl:
+                  maxLength: 2048
+                  type: string
+                  description: Link to Gog Store to download game
+                  format: uri
+                PlaystationStoreUrl:
+                  maxLength: 2048
+                  type: string
+                  description: Link to Playstation Store to download game
+                  format: uri
+                XboxStoreUrl:
+                  maxLength: 2048
+                  type: string
+                  description: Link to Xbox Store to download game
+                  format: uri
+                ItchStoreUrl:
+                  maxLength: 2048
+                  type: string
+                  description: Link to Itch Store to download game
+                  format: uri
+                EpicGamesStoreUrl:
+                  maxLength: 2048
+                  type: string
+                  description: Link to Epic Games Store to download game
+                  format: uri
+                SteamStoreUrl:
+                  maxLength: 2048
+                  type: string
+                  description: Link to Steam Store to download game
+                  format: uri
+                MagicLeapStoreUrl:
+                  maxLength: 2048
+                  type: string
+                  description: Link to Magic Leap Store to download game
+                  format: uri
+                OculusStoreUrl:
+                  maxLength: 2048
+                  type: string
+                  description: Link to Oculus Quest Store to download game
+                  format: uri
+                CreatorToolUrl:
+                  maxLength: 2048
+                  type: string
+                  description: Link to custom Creator Tool
+                  format: uri
+                Thumbnail:
+                  type: string
+                  description: Thumbnail of the project
+                  format: binary
+                UseUgcCdn:
+                  type: boolean
+                  description: Decides if CDN download links are returned
+                ModerationGuidance:
+                  maxLength: 5000
+                  type: string
+                  description: "Some text to guide moderators on how they should be\r\nmaking decisions on moderating content"
+            encoding:
+              Name:
+                style: form
+              Description:
+                style: form
+              Threshold:
+                style: form
+              ReviewRule:
+                style: form
+              Enabled:
+                style: form
+              IsDeletionPermanent:
+                style: form
+              AppleClientId:
+                style: form
+              FacebookClientId:
+                style: form
+              GoogleClientId:
+                style: form
+              SteamAppId:
+                style: form
+              SteamApiKey:
+                style: form
+              OidcName:
+                style: form
+              OidcClientId:
+                style: form
+              OidcIssuerUrl:
+                style: form
+              AppleAppStoreUrl:
+                style: form
+              GooglePlayStoreUrl:
+                style: form
+              GogStoreUrl:
+                style: form
+              PlaystationStoreUrl:
+                style: form
+              XboxStoreUrl:
+                style: form
+              ItchStoreUrl:
+                style: form
+              EpicGamesStoreUrl:
+                style: form
+              SteamStoreUrl:
+                style: form
+              MagicLeapStoreUrl:
+                style: form
+              OculusStoreUrl:
+                style: form
+              CreatorToolUrl:
+                style: form
+              Thumbnail:
+                style: form
+              UseUgcCdn:
+                style: form
+              ModerationGuidance:
+                style: form
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectDTO'
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorInfo'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorInfo'
+      security:
+        - Admin:
+            - user_generated_content.admin.all
+    get:
+      tags:
+        - Project
+      summary: Get details about a project
+      operationId: GetProject
+      parameters:
+        - name: projectId
+          in: path
+          description: Project identifier
+          required: true
+          schema:
+            type: string
+        - name: X-Delegated-User-Id
+          in: header
+          description: Delegated user id
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectDTO'
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorInfo'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorInfo'
+      security:
+        - Admin:
+            - user_generated_content.admin.all
+    delete:
+      tags:
+        - Project
+      summary: Deletes a project
+      operationId: DeleteProject
+      parameters:
+        - name: projectId
+          in: path
+          description: Project identifier to delete
+          required: true
+          schema:
+            type: string
+        - name: X-Delegated-User-Id
+          in: header
+          description: Delegated user id
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorInfo'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorInfo'
+      security:
+        - Admin:
+            - user_generated_content.admin.all
+  '/v1/projects/{projectId}/environments/{environmentId}/content/{contentId}/representations/{representationId}':
+    get:
+      tags:
+        - Representation
+      summary: Get representation for a content item
+      operationId: GetRepresentation
+      parameters:
+        - name: projectId
+          in: path
+          description: Project that this content belongs to
+          required: true
+          schema:
+            type: string
+        - name: environmentId
+          in: path
+          description: Environment that this content belongs to
+          required: true
+          schema:
+            type: string
+        - name: contentId
+          in: path
+          description: Content id
+          required: true
+          schema:
+            type: string
+        - name: representationId
+          in: path
+          description: Representation id
+          required: true
+          schema:
+            type: string
+        - name: X-Delegated-User-Id
+          in: header
+          description: Delegated user id
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RepresentationDTO'
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorInfo'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorInfo'
+      security:
+        - Admin:
+            - user_generated_content.admin.all
+    put:
+      tags:
+        - Representation
+      summary: Update representation for a content item
+      operationId: UpdateRepresentation
+      parameters:
+        - name: projectId
+          in: path
+          description: Project that this content belongs to
+          required: true
+          schema:
+            type: string
+        - name: environmentId
+          in: path
+          description: Environment that this content belongs to
+          required: true
+          schema:
+            type: string
+        - name: contentId
+          in: path
+          description: Content id
+          required: true
+          schema:
+            type: string
+        - name: representationId
+          in: path
+          description: Representation id
+          required: true
+          schema:
+            type: string
+        - name: X-Delegated-User-Id
+          in: header
+          description: Delegated user id
+          schema:
+            type: string
+      requestBody:
+        description: Request information for representation
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateRepresentationRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/UpdateRepresentationRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/UpdateRepresentationRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RepresentationDTO'
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorInfo'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorInfo'
+      security:
+        - Admin:
+            - user_generated_content.admin.all
+    delete:
+      tags:
+        - Representation
+      summary: Delete representation for a content item
+      operationId: DeleteRepresentation
+      parameters:
+        - name: projectId
+          in: path
+          description: Project that this content belongs to
+          required: true
+          schema:
+            type: string
+        - name: environmentId
+          in: path
+          description: Environment that this content belongs to
+          required: true
+          schema:
+            type: string
+        - name: contentId
+          in: path
+          description: Content id
+          required: true
+          schema:
+            type: string
+        - name: representationId
+          in: path
+          description: Representation id
+          required: true
+          schema:
+            type: string
+        - name: X-Delegated-User-Id
+          in: header
+          description: Delegated user id
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorInfo'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorInfo'
+      security:
+        - Admin:
+            - user_generated_content.admin.all
+  '/v1/projects/{projectId}/environments/{environmentId}/content/representations/search':
+    get:
+      tags:
+        - Representation
+      summary: Search representations in a given project and environment
+      operationId: SearchProjectRepresentations
+      parameters:
+        - name: projectId
+          in: path
+          description: Representations that belongs to this project
+          required: true
+          schema:
+            type: string
+        - name: environmentId
+          in: path
+          description: Representations that belongs to this environment
+          required: true
+          schema:
+            type: string
+        - name: offset
+          in: query
+          description: The amount of results to skip
+          schema:
+            maximum: 2147483647
+            minimum: 0
+            type: integer
+            format: int32
+        - name: limit
+          in: query
+          description: The amount of results to take
+          schema:
+            maximum: 100
+            minimum: 0
+            type: integer
+            format: int32
+        - name: sortBys
+          in: query
+          description: 'The field to use to sort by in ascending order, prefix - for descending'
+          schema:
+            type: array
+            items:
+              type: string
+        - name: search
+          in: query
+          description: Only return results with this search term in their name
+          schema:
+            type: string
+        - name: tags
+          in: query
+          description: Only return results with these tags
+          schema:
+            type: array
+            items:
+              type: string
+        - name: filters
+          in: query
+          description: "You can filter on any field in the DTO<br />\r\nSyntax for filters is: {field},{operator},{value}<br />\r\nThe operators are: eq (equal to), neq (not equal to), gt (greater than), gte (greater than or equal), lt (less than), lte (less than or equal)<br />\r\nThe field can be nested up to two levels. Ex: \"field.nestedField.nestedNestedField\"<br />\r\nfilters=\"deletedAt,eq,null\" will only return entities that have not been deleted<br />"
+          schema:
+            type: array
+            items:
+              type: string
+        - name: includeTotal
+          in: query
+          description: Should the result include the total count of objects available to page
+          schema:
+            type: boolean
+        - name: X-Delegated-User-Id
+          in: header
+          description: Delegated user id
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RepresentationDTOPagedResult'
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorInfo'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorInfo'
+      security:
+        - Admin:
+            - user_generated_content.admin.all
+  '/v1/projects/{projectId}/environments/{environmentId}/content/{contentId}/representations/search':
+    get:
+      tags:
+        - Representation
+      summary: Search representations for a content item
+      operationId: SearchRepresentations
+      parameters:
+        - name: projectId
+          in: path
+          description: Representations that belongs to this project
+          required: true
+          schema:
+            type: string
+        - name: environmentId
+          in: path
+          description: Representations that belongs to this environment
+          required: true
+          schema:
+            type: string
+        - name: contentId
+          in: path
+          description: Representations that belongs to this content
+          required: true
+          schema:
+            type: string
+        - name: offset
+          in: query
+          description: The amount of results to skip
+          schema:
+            maximum: 2147483647
+            minimum: 0
+            type: integer
+            format: int32
+        - name: limit
+          in: query
+          description: The amount of results to take
+          schema:
+            maximum: 100
+            minimum: 0
+            type: integer
+            format: int32
+        - name: search
+          in: query
+          description: Only return results with this search term in their name
+          schema:
+            type: string
+        - name: sortBys
+          in: query
+          description: 'The field to use to sort by in ascending order, prefix - for descending'
+          schema:
+            type: array
+            items:
+              type: string
+        - name: tags
+          in: query
+          description: Only return results with these tags
+          schema:
+            type: array
+            items:
+              type: string
+        - name: filters
+          in: query
+          description: "You can filter on any field in the DTO<br />\r\nSyntax for filters is: {field},{operator},{value}<br />\r\nThe operators are: eq (equal to), neq (not equal to), gt (greater than), gte (greater than or equal), lt (less than), lte (less than or equal)<br />\r\nThe field can be nested up to two levels. Ex: \"field.nestedField.nestedNestedField\"<br />\r\nfilters=\"deletedAt,eq,null\" will only return entities that have not been deleted<br />"
+          schema:
+            type: array
+            items:
+              type: string
+        - name: includeTotal
+          in: query
+          description: Should the result include the total count of objects available to page
+          schema:
+            type: boolean
+        - name: X-Delegated-User-Id
+          in: header
+          description: Delegated user id
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RepresentationDTOPagedResult'
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorInfo'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorInfo'
+      security:
+        - Admin:
+            - user_generated_content.admin.all
+  '/v1/projects/{projectId}/environments/{environmentId}/content/{contentId}/representations/{representationId}/versions':
+    get:
+      tags:
+        - Representation
+      summary: Search representation versions for a content item
+      operationId: SearchRepresentationVersions
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: environmentId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: contentId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: representationId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: offset
+          in: query
+          schema:
+            maximum: 2147483647
+            minimum: 0
+            type: integer
+            format: int32
+        - name: limit
+          in: query
+          schema:
+            maximum: 100
+            minimum: 0
+            type: integer
+            format: int32
+        - name: sortBys
+          in: query
+          schema:
+            type: array
+            items:
+              type: string
+        - name: includeTotal
+          in: query
+          schema:
+            type: boolean
+        - name: X-Delegated-User-Id
+          in: header
+          description: Delegated user id
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RepresentationVersionDTOPagedResult'
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorInfo'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorInfo'
+      security:
+        - Admin:
+            - user_generated_content.admin.all
+  '/v1/projects/{projectId}/tags':
+    get:
+      tags:
+        - Tag
+      summary: Get all tags
+      operationId: GetTags
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: X-Delegated-User-Id
+          in: header
+          description: Delegated user id
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TagDTO'
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorInfo'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorInfo'
+      security:
+        - Admin:
+            - user_generated_content.admin.all
+    post:
+      tags:
+        - Tag
+      summary: Create a tag
+      operationId: CreateTag
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: X-Delegated-User-Id
+          in: header
+          description: Delegated user id
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewTagRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/NewTagRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/NewTagRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TagDTO'
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorInfo'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorInfo'
+      security:
+        - Admin:
+            - user_generated_content.admin.all
+  '/v1/projects/{projectId}/tags/{tagId}':
+    delete:
+      tags:
+        - Tag
+      summary: Deletes a tag
+      operationId: DeleteTag
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: tagId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: X-Delegated-User-Id
+          in: header
+          description: Delegated user id
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorInfo'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorInfo'
+      security:
+        - Admin:
+            - user_generated_content.admin.all
+  '/v1/projects/{projectId}/environments/{environmentId}/webhooks/search':
+    get:
+      tags:
+        - Webhook
+      summary: Search webhooks for a project
+      operationId: SearchWebhooks
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: environmentId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: offset
+          in: query
+          schema:
+            maximum: 2147483647
+            minimum: 0
+            type: integer
+            format: int32
+        - name: limit
+          in: query
+          schema:
+            maximum: 100
+            minimum: 0
+            type: integer
+            format: int32
+        - name: sortBys
+          in: query
+          schema:
+            type: array
+            items:
+              type: string
+        - name: search
+          in: query
+          schema:
+            type: string
+        - name: filters
+          in: query
+          schema:
+            type: array
+            items:
+              type: string
+        - name: includeTotal
+          in: query
+          schema:
+            type: boolean
+        - name: includeLogs
+          in: query
+          schema:
+            type: boolean
+        - name: X-Delegated-User-Id
+          in: header
+          description: Delegated user id
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookDTOPagedResult'
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorInfo'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorInfo'
+      security:
+        - Admin:
+            - user_generated_content.admin.all
+  '/v1/projects/{projectId}/environments/{environmentId}/webhooks/{webhookId}':
+    get:
+      tags:
+        - Webhook
+      summary: Get webhook for a project
+      operationId: GetWebhook
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: environmentId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: webhookId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: includeLogs
+          in: query
+          schema:
+            type: boolean
+        - name: X-Delegated-User-Id
+          in: header
+          description: Delegated user id
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookDTO'
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorInfo'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorInfo'
+      security:
+        - Admin:
+            - user_generated_content.admin.all
+    put:
+      tags:
+        - Webhook
+      summary: Update webhook for a project
+      operationId: UpdateWebhook
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: environmentId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: webhookId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: includeLogs
+          in: query
+          schema:
+            type: boolean
+        - name: X-Delegated-User-Id
+          in: header
+          description: Delegated user id
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebhookRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/WebhookRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/WebhookRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookDTO'
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorInfo'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorInfo'
+      security:
+        - Admin:
+            - user_generated_content.admin.all
+    delete:
+      tags:
+        - Webhook
+      summary: Delete webhook from a project
+      operationId: DeleteWebhook
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: environmentId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: webhookId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: X-Delegated-User-Id
+          in: header
+          description: Delegated user id
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorInfo'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorInfo'
+      security:
+        - Admin:
+            - user_generated_content.admin.all
+  '/v1/projects/{projectId}/environments/{environmentId}/webhooks':
+    post:
+      tags:
+        - Webhook
+      summary: Create webhook for a project
+      operationId: CreateWebhook
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: environmentId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: X-Delegated-User-Id
+          in: header
+          description: Delegated user id
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebhookRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/WebhookRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/WebhookRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookDTO'
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorInfo'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorInfo'
+      security:
+        - Admin:
+            - user_generated_content.admin.all
+  '/v1/projects/{projectId}/environments/{environmentId}/webhooks/{webhookId}/call':
+    post:
+      tags:
+        - Webhook
+      summary: Call a webhook with a test payload
+      operationId: CallWebhook
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: environmentId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: webhookId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: X-Delegated-User-Id
+          in: header
+          description: Delegated user id
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorInfo'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorInfo'
+      security:
+        - Admin:
+            - user_generated_content.admin.all
+  '/v1/projects/{projectId}/environments/{environmentId}/webhooks/generate':
+    get:
+      tags:
+        - Webhook
+      summary: Generate a random secret that can be used to create new webhooks
+      operationId: GenerateWebhookSecret
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: environmentId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: X-Delegated-User-Id
+          in: header
+          description: Delegated user id
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: string
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorInfo'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorInfo'
+      security:
+        - Admin:
+            - user_generated_content.admin.all
+components:
+  schemas:
+    ApiErrorInfo:
+      type: object
+      properties:
+        title:
+          type: string
+          nullable: true
+        detail:
+          type: string
+          nullable: true
+        details:
+          type: array
+          items:
+            type: string
+          nullable: true
+        status:
+          type: integer
+          format: int32
+      additionalProperties: false
+      x-access-modifier: internal
+    AverageStat:
+      type: object
+      properties:
+        allTime:
+          type: number
+          format: double
+        past365Days:
+          type: number
+          format: double
+        past180Days:
+          type: number
+          format: double
+        past90Days:
+          type: number
+          format: double
+        past60Days:
+          type: number
+          format: double
+        past30Days:
+          type: number
+          format: double
+        past14Days:
+          type: number
+          format: double
+        past7Days:
+          type: number
+          format: double
+        pastDay:
+          type: number
+          format: double
+      additionalProperties: false
+    BannedPlayerDTO:
+      required:
+        - createdAt
+        - environmentId
+        - moderatorPlayerId
+        - playerId
+        - projectId
+        - reason
+      type: object
+      properties:
+        playerId:
+          minLength: 1
+          type: string
+        environmentId:
+          minLength: 1
+          type: string
+        projectId:
+          minLength: 1
+          type: string
+        moderatorPlayerId:
+          minLength: 1
+          type: string
+        environment:
+          $ref: '#/components/schemas/EnvironmentDTO'
+        moderator:
+          $ref: '#/components/schemas/ModeratorDTO'
+        reason:
+          maxLength: 1000
+          minLength: 1
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        playerStatistics:
+          $ref: '#/components/schemas/PlayerStatisticsDTO'
+        webhookEventName:
+          type: string
+          nullable: true
+      additionalProperties: false
+      x-access-modifier: internal
+    BannedPlayerDTOPagedResult:
+      required:
+        - limit
+        - offset
+        - results
+        - total
+      type: object
+      properties:
+        offset:
+          type: integer
+          format: int32
+        limit:
+          type: integer
+          format: int32
+        total:
+          type: integer
+          format: int32
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/BannedPlayerDTO'
+      additionalProperties: false
+      x-access-modifier: internal
+    ContentDTO:
+      required:
+        - creatorAccountId
+        - environmentId
+        - id
+        - projectId
+      type: object
+      properties:
+        id:
+          minLength: 1
+          type: string
+          description: Content item guid
+        name:
+          type: string
+          description: Display name
+          nullable: true
+        customId:
+          type: string
+          description: Client supplied id for content
+          nullable: true
+        description:
+          type: string
+          description: Description
+          nullable: true
+        visibility:
+          $ref: '#/components/schemas/ContentVisibility'
+        moderationStatus:
+          $ref: '#/components/schemas/ModerationStatus'
+        version:
+          type: string
+          description: Current live version of content
+          nullable: true
+        createdAt:
+          type: string
+          description: Date content was created
+          format: date-time
+        updatedAt:
+          type: string
+          description: Date content was last updated
+          format: date-time
+        deletedAt:
+          type: string
+          description: Date content was soft deleted
+          format: date-time
+          nullable: true
+        projectId:
+          minLength: 1
+          type: string
+          description: Owning project id
+        environmentId:
+          minLength: 1
+          type: string
+          description: Owning environment id
+        creatorAccountId:
+          minLength: 1
+          type: string
+          description: Account id that uploaded content
+        thumbnailUrl:
+          type: string
+          description: Image url for thumbnail
+          nullable: true
+        downloadUrl:
+          type: string
+          description: Download url for raw content
+          nullable: true
+        portalUrl:
+          type: string
+          description: Content portal url
+          nullable: true
+        contentMd5Hash:
+          type: string
+          description: Md5 hash of the content binary
+          nullable: true
+        thumbnailMd5Hash:
+          type: string
+          description: Md5 hash of the content thumbnail
+          nullable: true
+        metadata:
+          maxLength: 4000
+          type: string
+          description: Content metadata
+          nullable: true
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/TagDTO'
+          description: Tag Ids
+          nullable: true
+        discoveryTags:
+          type: array
+          items:
+            $ref: '#/components/schemas/TagDTO'
+          description: Content Discovery Tags
+          nullable: true
+        averageRating:
+          type: number
+          description: Average user rating
+          format: float
+          nullable: true
+        ratingCount:
+          type: integer
+          description: Number of user ratings
+          format: int32
+          nullable: true
+          deprecated: true
+        subscriptionCount:
+          type: integer
+          description: Number of subscriptions
+          format: int32
+          nullable: true
+          deprecated: true
+        statistics:
+          $ref: '#/components/schemas/ContentStatistics'
+        isUserSubscribed:
+          type: boolean
+          description: User is subscribed
+        assetUploadStatus:
+          $ref: '#/components/schemas/ContentUploadStatus'
+        thumbnailUploadStatus:
+          $ref: '#/components/schemas/ContentUploadStatus'
+        webhookEventName:
+          type: string
+          nullable: true
+      additionalProperties: false
+      description: Response for getting content info
+      x-access-modifier: internal
+    ContentDTOPagedResult:
+      required:
+        - limit
+        - offset
+        - results
+        - total
+      type: object
+      properties:
+        offset:
+          type: integer
+          format: int32
+        limit:
+          type: integer
+          format: int32
+        total:
+          type: integer
+          format: int32
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ContentDTO'
+      additionalProperties: false
+      x-access-modifier: internal
+    ContentDownloadStats:
+      type: object
+      properties:
+        projectId:
+          type: string
+          description: Project Id of the Content
+          nullable: true
+        environmentId:
+          type: string
+          description: Environment Id of the Content
+          nullable: true
+        contentId:
+          type: string
+          description: Content Id
+          nullable: true
+        allTime:
+          type: integer
+          description: All time Content downloads total
+          format: int32
+          nullable: true
+        past365Days:
+          type: integer
+          description: Past 360 days Content downloads count
+          format: int32
+          nullable: true
+        past180Days:
+          type: integer
+          description: Past 180 days Content downloads count
+          format: int32
+          nullable: true
+        past90Days:
+          type: integer
+          description: Past 90 days Content downloads count
+          format: int32
+          nullable: true
+        past60Days:
+          type: integer
+          description: Past 60 days Content downloads count
+          format: int32
+          nullable: true
+        past30Days:
+          type: integer
+          description: Past 30 days Content downloads count
+          format: int32
+          nullable: true
+        past14Days:
+          type: integer
+          description: Past 14 days Content downloads count
+          format: int32
+          nullable: true
+        past7Days:
+          type: integer
+          description: Past 7 days Content downloads count
+          format: int32
+          nullable: true
+        pastDay:
+          type: integer
+          description: Past day Content downloads count
+          format: int32
+          nullable: true
+        collectedAt:
+          type: string
+          description: Collection date-time
+          format: date-time
+          nullable: true
+      additionalProperties: false
+      description: Content download statistics
+    ContentModerationAction:
+      enum:
+        - approved
+        - rejected
+      type: string
+      description: ''
+    ContentModerationAuditLogDTO:
+      required:
+        - action
+        - contentId
+        - createdAt
+        - environmentId
+        - id
+        - moderatorPlayerId
+        - projectId
+        - reason
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        contentId:
+          minLength: 1
+          type: string
+        projectId:
+          minLength: 1
+          type: string
+        environmentId:
+          minLength: 1
+          type: string
+        moderatorPlayerId:
+          minLength: 1
+          type: string
+        moderator:
+          $ref: '#/components/schemas/ModeratorDTO'
+        content:
+          $ref: '#/components/schemas/ContentDTO'
+        action:
+          $ref: '#/components/schemas/ContentModerationAction'
+        reason:
+          $ref: '#/components/schemas/Reason'
+        otherReason:
+          type: string
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+      additionalProperties: false
+      x-access-modifier: internal
+    ContentModerationAuditLogDTOPagedResult:
+      required:
+        - limit
+        - offset
+        - results
+        - total
+      type: object
+      properties:
+        offset:
+          type: integer
+          format: int32
+        limit:
+          type: integer
+          format: int32
+        total:
+          type: integer
+          format: int32
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ContentModerationAuditLogDTO'
+      additionalProperties: false
+      x-access-modifier: internal
+    ContentRatingRequest:
+      type: object
+      properties:
+        rating:
+          maximum: 5
+          minimum: 0
+          type: number
+          format: float
+      additionalProperties: false
+      x-access-modifier: internal
+    ContentStatistics:
+      type: object
+      properties:
+        ratingsAverage:
+          $ref: '#/components/schemas/AverageStat'
+        ratingsCount:
+          $ref: '#/components/schemas/CountStat'
+        downloadsCount:
+          $ref: '#/components/schemas/CountStat'
+        subscriptionsCount:
+          $ref: '#/components/schemas/CountStat'
+        reportsCount:
+          $ref: '#/components/schemas/CountStat'
+      additionalProperties: false
+    ContentUploadStatus:
+      enum:
+        - pending
+        - success
+        - failed
+        - none
+      type: string
+      description: ''
+    ContentUserRatingDTO:
+      required:
+        - contentId
+        - id
+        - userId
+      type: object
+      properties:
+        id:
+          minLength: 1
+          type: string
+          description: Id of content rating
+        userId:
+          minLength: 1
+          type: string
+          description: Id of user providing rating
+        contentId:
+          minLength: 1
+          type: string
+          description: Content the rating applies to
+        createdAt:
+          type: string
+          description: Date rating was first created
+          format: date-time
+        updatedAt:
+          type: string
+          description: Date rating was updated
+          format: date-time
+        rating:
+          type: number
+          description: User rating
+          format: float
+      additionalProperties: false
+      description: Response for getting content user rating info
+      x-access-modifier: internal
+    ContentVersionDTO:
+      required:
+        - assetUploadStatus
+        - contentId
+        - createdAt
+        - id
+        - thumbnailUploadStatus
+        - updatedAt
+      type: object
+      properties:
+        id:
+          minLength: 1
+          type: string
+        contentMd5Hash:
+          type: string
+          nullable: true
+        thumbnailMd5Hash:
+          type: string
+          nullable: true
+        size:
+          type: integer
+          format: int64
+          nullable: true
+        contentId:
+          minLength: 1
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        assetUploadStatus:
+          $ref: '#/components/schemas/ContentUploadStatus'
+        thumbnailUploadStatus:
+          $ref: '#/components/schemas/ContentUploadStatus'
+      additionalProperties: false
+      x-access-modifier: internal
+    ContentVersionDTOPagedResult:
+      required:
+        - limit
+        - offset
+        - results
+        - total
+      type: object
+      properties:
+        offset:
+          type: integer
+          format: int32
+        limit:
+          type: integer
+          format: int32
+        total:
+          type: integer
+          format: int32
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ContentVersionDTO'
+      additionalProperties: false
+      x-access-modifier: internal
+    ContentVisibility:
+      enum:
+        - private
+        - publicGame
+        - publicGlobal
+        - hidden
+        - public
+        - unlisted
+      type: string
+      description: "Controls the visibility of content across projects<p>Possible values:</p>\n<ul>\n<li><b>Private</b>: Content is only visible to current user in current game</li>\n<li><b>PublicGame</b>: Content is visible to any users in current game</li>\n<li><b>PublicGlobal</b>: Content is visible to all shared games</li>\n<li><b>Hidden</b>: Content is hidden because Reports exceeds project threshold</li>\n<li><b>Public</b>: Content is visible to any users</li>\n<li><b>Unlisted</b>: Content is not searchable but still accessible directly</li>\n\n</ul>\n"
+    CountStat:
+      type: object
+      properties:
+        allTime:
+          type: integer
+          format: int32
+        past365Days:
+          type: integer
+          format: int32
+        past180Days:
+          type: integer
+          format: int32
+        past90Days:
+          type: integer
+          format: int32
+        past60Days:
+          type: integer
+          format: int32
+        past30Days:
+          type: integer
+          format: int32
+        past14Days:
+          type: integer
+          format: int32
+        past7Days:
+          type: integer
+          format: int32
+        pastDay:
+          type: integer
+          format: int32
+      additionalProperties: false
+    CreateModeratorRequest:
+      required:
+        - playerId
+        - playerRoleId
+      type: object
+      properties:
+        playerId:
+          minLength: 1
+          type: string
+          description: The Player ID to assign moderator access
+        playerRoleId:
+          type: string
+          description: The Player Role ID to assign the moderator
+          format: uuid
+      additionalProperties: false
+      description: Assign a new moderator request
+      x-access-modifier: internal
+    EnvironmentDTO:
+      required:
+        - id
+        - projectId
+      type: object
+      properties:
+        id:
+          minLength: 1
+          type: string
+          description: Environment id
+        name:
+          type: string
+          description: Environment name
+          nullable: true
+        projectId:
+          minLength: 1
+          type: string
+          description: Project id
+        isDefault:
+          type: boolean
+          description: Is the default environment for this project
+        createdAt:
+          type: string
+          description: The date the environment was created upstream
+          format: date-time
+        updatedAt:
+          type: string
+          description: The date the environment was last updated upstream
+          format: date-time
+        archivedAt:
+          type: string
+          description: The date the environment was archived upstream
+          format: date-time
+          nullable: true
+        deletedAt:
+          type: string
+          description: The date the environment was soft deleted upstream
+          format: date-time
+          nullable: true
+        statistics:
+          $ref: '#/components/schemas/EnvironmentStatisticsDTO'
+      additionalProperties: false
+      x-access-modifier: internal
+    EnvironmentDetailedStatisticsDTO:
+      type: object
+      properties:
+        contentCount:
+          type: integer
+          format: int32
+        downloadedContentCount:
+          type: integer
+          format: int32
+        subscriptionCount:
+          type: integer
+          format: int32
+        reportsCount:
+          type: integer
+          format: int32
+        updatedAt:
+          type: string
+          format: date-time
+      additionalProperties: false
+    EnvironmentStatisticsDTO:
+      type: object
+      properties:
+        allTime:
+          $ref: '#/components/schemas/EnvironmentDetailedStatisticsDTO'
+        past365Days:
+          $ref: '#/components/schemas/EnvironmentDetailedStatisticsDTO'
+        past180Days:
+          $ref: '#/components/schemas/EnvironmentDetailedStatisticsDTO'
+        past90Days:
+          $ref: '#/components/schemas/EnvironmentDetailedStatisticsDTO'
+        past60Days:
+          $ref: '#/components/schemas/EnvironmentDetailedStatisticsDTO'
+        past30Days:
+          $ref: '#/components/schemas/EnvironmentDetailedStatisticsDTO'
+        past14Days:
+          $ref: '#/components/schemas/EnvironmentDetailedStatisticsDTO'
+        past7Days:
+          $ref: '#/components/schemas/EnvironmentDetailedStatisticsDTO'
+        pastDay:
+          $ref: '#/components/schemas/EnvironmentDetailedStatisticsDTO'
+        contentCount:
+          $ref: '#/components/schemas/CountStat'
+        downloadCount:
+          $ref: '#/components/schemas/CountStat'
+        subscriptionCount:
+          $ref: '#/components/schemas/CountStat'
+        reportCount:
+          $ref: '#/components/schemas/CountStat'
+      additionalProperties: false
+    HttpStatusCode:
+      enum:
+        - continue
+        - switchingProtocols
+        - processing
+        - earlyHints
+        - ok
+        - created
+        - accepted
+        - nonAuthoritativeInformation
+        - noContent
+        - resetContent
+        - partialContent
+        - multiStatus
+        - alreadyReported
+        - imUsed
+        - ambiguous
+        - moved
+        - redirect
+        - redirectMethod
+        - notModified
+        - useProxy
+        - unused
+        - temporaryRedirect
+        - permanentRedirect
+        - badRequest
+        - unauthorized
+        - paymentRequired
+        - forbidden
+        - notFound
+        - methodNotAllowed
+        - notAcceptable
+        - proxyAuthenticationRequired
+        - requestTimeout
+        - conflict
+        - gone
+        - lengthRequired
+        - preconditionFailed
+        - requestEntityTooLarge
+        - requestUriTooLong
+        - unsupportedMediaType
+        - requestedRangeNotSatisfiable
+        - expectationFailed
+        - misdirectedRequest
+        - unprocessableEntity
+        - locked
+        - failedDependency
+        - upgradeRequired
+        - preconditionRequired
+        - tooManyRequests
+        - requestHeaderFieldsTooLarge
+        - unavailableForLegalReasons
+        - internalServerError
+        - notImplemented
+        - badGateway
+        - serviceUnavailable
+        - gatewayTimeout
+        - httpVersionNotSupported
+        - variantAlsoNegotiates
+        - insufficientStorage
+        - loopDetected
+        - notExtended
+        - networkAuthenticationRequired
+      type: string
+    ModerationStatus:
+      enum:
+        - approved
+        - rejected
+        - needsModeration
+      type: string
+      description: ''
+    ModeratorDTO:
+      required:
+        - createdAt
+        - environmentId
+        - playerId
+        - playerRoleId
+        - projectId
+        - updatedAt
+      type: object
+      properties:
+        playerId:
+          minLength: 1
+          type: string
+        environmentId:
+          minLength: 1
+          type: string
+        projectId:
+          minLength: 1
+          type: string
+        playerRoleId:
+          type: string
+          format: uuid
+        environment:
+          $ref: '#/components/schemas/EnvironmentDTO'
+        playerRole:
+          $ref: '#/components/schemas/PlayerRoleDTO'
+        bannedPlayers:
+          type: array
+          items:
+            $ref: '#/components/schemas/BannedPlayerDTO'
+          nullable: true
+        contentModerationAuditLogs:
+          type: array
+          items:
+            $ref: '#/components/schemas/ContentModerationAuditLogDTO'
+          nullable: true
+        statistics:
+          $ref: '#/components/schemas/ModeratorStatisticsDTO'
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        deletedAt:
+          type: string
+          format: date-time
+          nullable: true
+      additionalProperties: false
+      x-access-modifier: internal
+    ModeratorDTOPagedResult:
+      required:
+        - limit
+        - offset
+        - results
+        - total
+      type: object
+      properties:
+        offset:
+          type: integer
+          format: int32
+        limit:
+          type: integer
+          format: int32
+        total:
+          type: integer
+          format: int32
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ModeratorDTO'
+      additionalProperties: false
+      x-access-modifier: internal
+    ModeratorDetailedStatisticsDTO:
+      type: object
+      properties:
+        reviews:
+          type: integer
+          format: int32
+        approvals:
+          type: integer
+          format: int32
+        rejections:
+          type: integer
+          format: int32
+        bannedPlayerCount:
+          type: integer
+          format: int32
+        updatedAt:
+          type: string
+          format: date-time
+      additionalProperties: false
+    ModeratorStatisticsDTO:
+      type: object
+      properties:
+        allTime:
+          $ref: '#/components/schemas/ModeratorDetailedStatisticsDTO'
+        past365Days:
+          $ref: '#/components/schemas/ModeratorDetailedStatisticsDTO'
+        past180Days:
+          $ref: '#/components/schemas/ModeratorDetailedStatisticsDTO'
+        past90Days:
+          $ref: '#/components/schemas/ModeratorDetailedStatisticsDTO'
+        past60Days:
+          $ref: '#/components/schemas/ModeratorDetailedStatisticsDTO'
+        past30Days:
+          $ref: '#/components/schemas/ModeratorDetailedStatisticsDTO'
+        past14Days:
+          $ref: '#/components/schemas/ModeratorDetailedStatisticsDTO'
+        past7Days:
+          $ref: '#/components/schemas/ModeratorDetailedStatisticsDTO'
+        pastDay:
+          $ref: '#/components/schemas/ModeratorDetailedStatisticsDTO'
+        reviewsCount:
+          $ref: '#/components/schemas/CountStat'
+        approvalsCount:
+          $ref: '#/components/schemas/CountStat'
+        rejectionsCount:
+          $ref: '#/components/schemas/CountStat'
+        bannedPlayerCount:
+          $ref: '#/components/schemas/CountStat'
+      additionalProperties: false
+    NewTagRequest:
+      type: object
+      properties:
+        name:
+          maxLength: 1024
+          type: string
+          nullable: true
+      additionalProperties: false
+      x-access-modifier: internal
+    PlayerRoleDTO:
+      required:
+        - canApproveContent
+        - canBanPlayer
+        - canRejectContent
+        - canUnbanPlayer
+        - canViewContentRequiringModeration
+        - createdAt
+        - environmentId
+        - id
+        - name
+        - projectId
+        - updatedAt
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        environmentId:
+          minLength: 1
+          type: string
+        projectId:
+          minLength: 1
+          type: string
+        name:
+          minLength: 1
+          type: string
+        canApproveContent:
+          type: boolean
+        canRejectContent:
+          type: boolean
+        canViewContentRequiringModeration:
+          type: boolean
+        canBanPlayer:
+          type: boolean
+        canUnbanPlayer:
+          type: boolean
+        environment:
+          $ref: '#/components/schemas/EnvironmentDTO'
+        moderators:
+          type: array
+          items:
+            $ref: '#/components/schemas/ModeratorDTO'
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+      additionalProperties: false
+      x-access-modifier: internal
+    PlayerStatisticsDTO:
+      type: object
+      properties:
+        projectId:
+          type: string
+          nullable: true
+        environmentId:
+          type: string
+          nullable: true
+        playerId:
+          type: string
+          nullable: true
+        playerContentCount:
+          type: integer
+          format: int32
+          deprecated: true
+        approvedPlayerContentCount:
+          type: integer
+          format: int32
+          deprecated: true
+        rejectedPlayerContentCount:
+          type: integer
+          format: int32
+          deprecated: true
+        needsModerationPlayerContentCount:
+          type: integer
+          format: int32
+          deprecated: true
+        subscriptionForPlayerContent:
+          type: integer
+          format: int32
+          deprecated: true
+        ratingForPlayerContent:
+          type: integer
+          format: int32
+          deprecated: true
+        averageRatingForPlayerContent:
+          type: number
+          format: double
+          deprecated: true
+        reportForPlayerContent:
+          type: integer
+          format: int32
+          deprecated: true
+        playerSubscriptions:
+          type: integer
+          format: int32
+          deprecated: true
+        playerRatings:
+          type: integer
+          format: int32
+          deprecated: true
+        playerAverageRating:
+          type: number
+          format: double
+          deprecated: true
+        playersReports:
+          type: integer
+          format: int32
+          deprecated: true
+        updatedAt:
+          type: string
+          format: date-time
+        contentCount:
+          $ref: '#/components/schemas/CountStat'
+        approvedContentCount:
+          $ref: '#/components/schemas/CountStat'
+        rejectedContentCount:
+          $ref: '#/components/schemas/CountStat'
+        needsModerationContentCount:
+          $ref: '#/components/schemas/CountStat'
+        subscriptionCount:
+          $ref: '#/components/schemas/CountStat'
+        ratingsCount:
+          $ref: '#/components/schemas/CountStat'
+        averageContentRating:
+          $ref: '#/components/schemas/AverageStat'
+        reportsCount:
+          $ref: '#/components/schemas/CountStat'
+        subscriberCount:
+          $ref: '#/components/schemas/CountStat'
+        playerRatingCount:
+          $ref: '#/components/schemas/CountStat'
+        averageContentRatingGiven:
+          $ref: '#/components/schemas/AverageStat'
+        reportsGivenCount:
+          $ref: '#/components/schemas/CountStat'
+      additionalProperties: false
+    PlayerStatisticsDTOPagedResult:
+      required:
+        - limit
+        - offset
+        - results
+        - total
+      type: object
+      properties:
+        offset:
+          type: integer
+          format: int32
+        limit:
+          type: integer
+          format: int32
+        total:
+          type: integer
+          format: int32
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/PlayerStatisticsDTO'
+      additionalProperties: false
+    ProjectDTO:
+      required:
+        - appleAppStoreUrl
+        - appleClientId
+        - creatorToolUrl
+        - epicGamesStoreUrl
+        - facebookClientId
+        - gogStoreUrl
+        - googleClientId
+        - googlePlayStoreUrl
+        - id
+        - itchStoreUrl
+        - magicLeapStoreUrl
+        - moderationGuidance
+        - oculusStoreUrl
+        - oidcClientId
+        - oidcIssuerUrl
+        - oidcName
+        - playstationStoreUrl
+        - steamApiKey
+        - steamAppId
+        - steamStoreUrl
+        - xboxStoreUrl
+      type: object
+      properties:
+        id:
+          minLength: 1
+          type: string
+          description: Project item guid
+        name:
+          type: string
+          description: Display name
+          nullable: true
+        description:
+          type: string
+          description: Description of the project
+          nullable: true
+        threshold:
+          type: integer
+          description: The amount of flags required to hide content in this project
+          format: int32
+        reviewRule:
+          $ref: '#/components/schemas/ProjectReviewRule'
+        thumbnailUrl:
+          type: string
+          description: Image url for thumbnail
+          nullable: true
+        iconUrl:
+          type: string
+          description: Icon url from upstream
+          nullable: true
+        appleClientId:
+          minLength: 1
+          type: string
+          description: Apple Authentication Provider Client ID
+        facebookClientId:
+          minLength: 1
+          type: string
+          description: Facebook Authentication Provider Client ID
+        googleClientId:
+          minLength: 1
+          type: string
+          description: Google Authentication Provider Client ID
+        steamAppId:
+          minLength: 1
+          type: string
+          description: Steam Authentication Provider Application ID
+        steamApiKey:
+          minLength: 1
+          type: string
+          description: Steam Authentication Provider API Key
+        oidcName:
+          minLength: 1
+          type: string
+          description: OpenID Connect (OIDC) Provider Name
+        oidcClientId:
+          minLength: 1
+          type: string
+          description: OpenID Connect (OIDC) Provider Client ID
+        oidcIssuerUrl:
+          minLength: 1
+          type: string
+          description: OpenID Connect (OIDC) Provider Issuer URL
+        appleAppStoreUrl:
+          minLength: 1
+          type: string
+          description: Link to Apple App Store to download game
+        googlePlayStoreUrl:
+          minLength: 1
+          type: string
+          description: Link to Google Play Store to download game
+        gogStoreUrl:
+          minLength: 1
+          type: string
+          description: Link to Gog Store to download game
+        playstationStoreUrl:
+          minLength: 1
+          type: string
+          description: Link to Playstation Store to download game
+        xboxStoreUrl:
+          minLength: 1
+          type: string
+          description: Link to Xbox Store to download game
+        itchStoreUrl:
+          minLength: 1
+          type: string
+          description: Link to Itch Store to download game
+        epicGamesStoreUrl:
+          minLength: 1
+          type: string
+          description: Link to Epic Games Store to download game
+        steamStoreUrl:
+          minLength: 1
+          type: string
+          description: Link to Steam Store to download game
+        magicLeapStoreUrl:
+          minLength: 1
+          type: string
+          description: Link to Magic Leap Store to download game
+        oculusStoreUrl:
+          minLength: 1
+          type: string
+          description: Link to Oculus Quest Store to download game
+        creatorToolUrl:
+          minLength: 1
+          type: string
+          description: Link to custom Creator Tool
+        enabled:
+          type: boolean
+          description: If this project is enabled it will be publicly visible in the UGC Portal
+        createdAt:
+          type: string
+          description: Date project was created
+          format: date-time
+        updatedAt:
+          type: string
+          description: Date project was last updated
+          format: date-time
+        archivedAt:
+          type: string
+          description: Date project was archived upstream
+          format: date-time
+          nullable: true
+        deletedAt:
+          type: string
+          description: Date project was soft deleted
+          format: date-time
+          nullable: true
+        isDeletionPermanent:
+          type: boolean
+          description: "Flag for Project to allow hard deletion of Content and associated entities.\r\nIf set to true for the project, any content deletion is permanent. If set to false, soft deletion will occur instead."
+        useUgcCdn:
+          type: boolean
+          description: Decides if CDN download links are returned
+        moderationGuidance:
+          minLength: 1
+          type: string
+      additionalProperties: false
+      description: Response for project
+      x-access-modifier: internal
+    ProjectReviewRule:
+      enum:
+        - flexible
+        - strict
+      type: string
+      description: "<p>Possible values:</p>\n<ul>\n<li><b>Flexible</b>: Flexible: There’s no need to get any approval to publish content on the web portal. Rely on the threshold setting to auto-hide contents.</li>\n<li><b>Strict</b>: Strict: All contents should be reviewed and approved by moderator BEFORE publishing on the web portal.</li>\n\n</ul>\n"
+      x-access-modifier: internal
+    Reason:
+      enum:
+        - dmcaRequest
+        - nonFunctional
+        - inappropriate
+        - illegalOrStolen
+        - misleading
+        - other
+      type: string
+      description: ''
+    RepresentationDTO:
+      required:
+        - contentId
+        - createdAt
+        - id
+        - tags
+        - updatedAt
+      type: object
+      properties:
+        id:
+          minLength: 1
+          type: string
+        contentId:
+          minLength: 1
+          type: string
+        currentVersion:
+          type: string
+          nullable: true
+        downloadUrl:
+          type: string
+          nullable: true
+        md5Hash:
+          type: string
+          nullable: true
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/RepresentationTagDTO'
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        deletedAt:
+          type: string
+          format: date-time
+          nullable: true
+        metadata:
+          maxLength: 4000
+          type: string
+          nullable: true
+        webhookEventName:
+          type: string
+          nullable: true
+      additionalProperties: false
+      x-access-modifier: internal
+    RepresentationDTOPagedResult:
+      required:
+        - limit
+        - offset
+        - results
+        - total
+      type: object
+      properties:
+        offset:
+          type: integer
+          format: int32
+        limit:
+          type: integer
+          format: int32
+        total:
+          type: integer
+          format: int32
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/RepresentationDTO'
+      additionalProperties: false
+      x-access-modifier: internal
+    RepresentationTagDTO:
+      required:
+        - id
+        - name
+      type: object
+      properties:
+        id:
+          minLength: 1
+          type: string
+        name:
+          minLength: 1
+          type: string
+      additionalProperties: false
+      x-access-modifier: internal
+    RepresentationVersionDTO:
+      required:
+        - createdAt
+        - id
+        - md5Hash
+        - representationId
+        - updatedAt
+        - uploadStatus
+      type: object
+      properties:
+        id:
+          minLength: 1
+          type: string
+        md5Hash:
+          minLength: 1
+          type: string
+        size:
+          type: integer
+          format: int64
+          nullable: true
+        representationId:
+          minLength: 1
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        deletedAt:
+          type: string
+          format: date-time
+          nullable: true
+        uploadStatus:
+          $ref: '#/components/schemas/ContentUploadStatus'
+      additionalProperties: false
+      x-access-modifier: internal
+    RepresentationVersionDTOPagedResult:
+      required:
+        - limit
+        - offset
+        - results
+        - total
+      type: object
+      properties:
+        offset:
+          type: integer
+          format: int32
+        limit:
+          type: integer
+          format: int32
+        total:
+          type: integer
+          format: int32
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/RepresentationVersionDTO'
+      additionalProperties: false
+      x-access-modifier: internal
+    TagDTO:
+      required:
+        - projectId
+      type: object
+      properties:
+        id:
+          type: string
+          description: Tag item guid
+          nullable: true
+        name:
+          type: string
+          description: Display name
+          nullable: true
+        projectId:
+          minLength: 1
+          type: string
+          description: "The project that the tag belongs to. If \"global\" then tag is un-editable/un-deletable and is shared\r\namong all projects."
+      additionalProperties: false
+      description: Response for getting tag info
+      x-access-modifier: internal
+    UpdateContentRequest:
+      required:
+        - description
+        - name
+      type: object
+      properties:
+        name:
+          maxLength: 100
+          minLength: 1
+          type: string
+          description: New name or null to ignore
+        description:
+          maxLength: 1024
+          minLength: 1
+          type: string
+          description: New description or null to ignore
+        customId:
+          maxLength: 64
+          type: string
+          nullable: true
+        visibility:
+          $ref: '#/components/schemas/ContentVisibility'
+        contentTypeId:
+          type: integer
+          description: New Content Type id or zero to ignore
+          format: int32
+        tagsId:
+          type: array
+          items:
+            type: string
+          nullable: true
+        version:
+          type: string
+          description: Version id of content
+          nullable: true
+        metadata:
+          maxLength: 4000
+          type: string
+          nullable: true
+      additionalProperties: false
+      description: Update the meta data about a content item
+      x-access-modifier: internal
+    UpdateContentVisibilityRequest:
+      type: object
+      properties:
+        visibility:
+          $ref: '#/components/schemas/ContentVisibility'
+      additionalProperties: false
+      description: Update the visibility of a content
+      x-access-modifier: internal
+    UpdateModeratorRequest:
+      required:
+        - playerRoleId
+      type: object
+      properties:
+        playerRoleId:
+          type: string
+          format: uuid
+      additionalProperties: false
+    UpdateRepresentationRequest:
+      required:
+        - tags
+      type: object
+      properties:
+        tags:
+          type: array
+          items:
+            type: string
+        version:
+          type: string
+          nullable: true
+        metadata:
+          maxLength: 4000
+          type: string
+          nullable: true
+      additionalProperties: false
+      x-access-modifier: internal
+    WebhookDTO:
+      required:
+        - environmentId
+        - id
+        - projectId
+      type: object
+      properties:
+        id:
+          minLength: 1
+          type: string
+          description: ID of the webhook
+        projectId:
+          minLength: 1
+          type: string
+          description: ID of the project that the webhook belongs to
+        environmentId:
+          minLength: 1
+          type: string
+          description: ID of the environment that the webhook belongs to
+        name:
+          type: string
+          description: Display name of the Webhook
+          nullable: true
+        url:
+          type: string
+          description: "The URL that will be used to make a POST request.\r\nTo verify that the webhook is coming from us, you can validate\r\nthe request header `X-UNITY-SIGNATURE-256`. The request header\r\nshould equal: sha256=[hash of signature]. The hash of the signature\r\nshould be the contentId from the payload joined together with the content\r\nupdated epoch seconds, using a colon \":\" to separate the two,\r\nhashed together with the secret provided when the webhook was created.\r\nSo the signature will be sha256=hash(contentId:contentUpdatedAtEpochSeconds).\r\nThe hash digest is hmac sha256."
+          nullable: true
+        onContentCreate:
+          type: boolean
+          description: "If enabled, a webhook POST request will be made whenever some\r\ncontent has been created in the project. The body will be the\r\nnewly created Content"
+        onContentUpdate:
+          type: boolean
+          description: "If enabled, a webhook POST request will be made whenever some\r\ncontent has been updated in the project. The body will be the\r\nnewly updated Content"
+        onContentDelete:
+          type: boolean
+          description: "If enabled, a webhook POST request will be made whenever some\r\ncontent has been deleted in the project. The body will be the\r\ndeleted Content"
+        onContentAddVersionSuccess:
+          type: boolean
+          description: "If enabled, a webhook POST request will be made whenever some\r\ncontent has had a new version published. The body will be the\r\nContent Version"
+        onContentVersionSet:
+          type: boolean
+          description: "If enabled, a webhook POST request will be made whenever some\r\ncontent has had its version updated. The body will be the\r\nContent Version"
+        onContentModerated:
+          type: boolean
+          description: "If enabled, a webhook POST request will be made whenever some\r\ncontent has been moderated. The body will be the\r\nContent"
+        onContentReported:
+          type: boolean
+          description: "If enabled, a webhook POST request will be made whenever some\r\ncontent has been reported. The body will be the\r\nContent"
+        onPlayerBanned:
+          type: boolean
+          description: "If enabled, a webhook POST request will be made whenever some\r\nplayer has been banned. The body will be the\r\nBannedPlayer"
+        onPlayerUnbanned:
+          type: boolean
+          description: "If enabled, a webhook POST request will be made whenever some\r\nplayer has been unbanned. The body will be the\r\nBannedPlayer"
+        onContentModerationRequired:
+          type: boolean
+          description: "If enabled, a webhook POST request will be made whenever some\r\ncontent reaches its threshold for flags/reports. The body will be the\r\nContent"
+        onRepresentationCreate:
+          type: boolean
+          description: "If enabled, a webhook POST request will be made whenever some\r\nrepresentation has been created in the project. The body will be the\r\nnewly created Representation"
+        onRepresentationUpdate:
+          type: boolean
+          description: "If enabled, a webhook POST request will be made whenever some\r\nrepresentation has been updated in the project. The body will be the\r\nnewly updated Representation"
+        onRepresentationDelete:
+          type: boolean
+          description: "If enabled, a webhook POST request will be made whenever some\r\nrepresentation has been deleted in the project. The body will be the\r\ndeleted Representation"
+        onRepresentationAddVersionSuccess:
+          type: boolean
+          description: "If enabled, a webhook POST request will be made whenever some\r\nrepresentation has had a new version published. The body will be the\r\nRepresentation Version"
+        onRepresentationVersionSet:
+          type: boolean
+          description: "If enabled, a webhook POST request will be made whenever some\r\nrepresentation has had its version updated. The body will be the\r\nRepresentation Version"
+        logs:
+          type: array
+          items:
+            $ref: '#/components/schemas/WebhookLogDTO'
+          description: "A list of the last 5 logs associated with this Webhook.\r\nOnly populated if includeLogs=true is set."
+          nullable: true
+        createdAt:
+          type: string
+          description: Date webhook was created
+          format: date-time
+        updatedAt:
+          type: string
+          description: Date webhook was last updated
+          format: date-time
+        deletedAt:
+          type: string
+          description: Date webhook was soft deleted
+          format: date-time
+          nullable: true
+      additionalProperties: false
+    WebhookDTOPagedResult:
+      required:
+        - limit
+        - offset
+        - results
+        - total
+      type: object
+      properties:
+        offset:
+          type: integer
+          format: int32
+        limit:
+          type: integer
+          format: int32
+        total:
+          type: integer
+          format: int32
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/WebhookDTO'
+      additionalProperties: false
+    WebhookLogDTO:
+      required:
+        - id
+      type: object
+      properties:
+        id:
+          minLength: 1
+          type: string
+        retryAttempt:
+          type: integer
+          format: int32
+        requestUri:
+          type: string
+          nullable: true
+        requestHeaders:
+          type: string
+          nullable: true
+        requestContent:
+          type: string
+          nullable: true
+        requestMethod:
+          type: string
+          nullable: true
+        responseStatusCode:
+          $ref: '#/components/schemas/HttpStatusCode'
+        responseContent:
+          type: string
+          nullable: true
+        responseIsSuccess:
+          type: boolean
+        isTestCall:
+          type: boolean
+        createdAt:
+          type: string
+          format: date-time
+      additionalProperties: false
+    WebhookRequest:
+      required:
+        - name
+        - url
+      type: object
+      properties:
+        name:
+          maxLength: 100
+          minLength: 1
+          type: string
+          description: Display name of the Webhook
+        url:
+          maxLength: 2000
+          minLength: 1
+          type: string
+          description: The URL that will be used to make a POST request
+          format: uri
+        secret:
+          type: string
+          description: "A secure randomly generated secret used for hashing\r\nwebhook payloads. Should have high entropy and at least 20\r\nbytes. This secret will be used by us for hashing the payload\r\nand will be used by you to validate the payload.\r\nUse the GenerateSecret endpoint to generate a secure secret that\r\ncan be provided."
+          nullable: true
+        onContentCreate:
+          type: boolean
+          description: "If enabled, a webhook POST request will be made whenever some\r\ncontent has been created in the project. The body will be the\r\nnewly created Content"
+        onContentUpdate:
+          type: boolean
+          description: "If enabled, a webhook POST request will be made whenever some\r\ncontent has been updated in the project. The body will be the\r\nnewly updated Content"
+        onContentDelete:
+          type: boolean
+          description: "If enabled, a webhook POST request will be made whenever some\r\ncontent has been deleted in the project. The body will be the\r\ndeleted Content"
+        onContentAddVersionSuccess:
+          type: boolean
+          description: "If enabled, a webhook POST request will be made whenever some\r\ncontent has had a new version published. The body will be the\r\nContent Version"
+        onContentVersionSet:
+          type: boolean
+          description: "If enabled, a webhook POST request will be made whenever some\r\ncontent has had its version updated. The body will be the\r\nContent Version"
+        onContentModerationRequired:
+          type: boolean
+          description: "If enabled, a webhook POST request will be made whenever some\r\ncontent reaches its threshold for flags/reports. The body will be the\r\nContent"
+        onContentModerated:
+          type: boolean
+          description: "If enabled, a webhook POST request will be made whenever some\r\ncontent has been moderated. The body will be the\r\nContent"
+        onContentReported:
+          type: boolean
+          description: "If enabled, a webhook POST request will be made whenever some\r\ncontent has been reported. The body will be the\r\nContent"
+        onPlayerBanned:
+          type: boolean
+          description: "If enabled, a webhook POST request will be made whenever some\r\nplayer has been banned. The body will be the\r\nBannedPlayer"
+        onPlayerUnbanned:
+          type: boolean
+          description: "If enabled, a webhook POST request will be made whenever some\r\nplayer has been unbanned. The body will be the\r\nBannedPlayer"
+        onRepresentationCreate:
+          type: boolean
+          description: "If enabled, a webhook POST request will be made whenever some\r\nrepresentation has been created in the project. The body will be the\r\nnewly created Representation"
+        onRepresentationUpdate:
+          type: boolean
+          description: "If enabled, a webhook POST request will be made whenever some\r\nrepresentation has been updated in the project. The body will be the\r\nnewly updated Representation"
+        onRepresentationDelete:
+          type: boolean
+          description: "If enabled, a webhook POST request will be made whenever some\r\nrepresentation has been deleted in the project. The body will be the\r\ndeleted Representation"
+        onRepresentationAddVersionSuccess:
+          type: boolean
+          description: "If enabled, a webhook POST request will be made whenever some\r\nrepresentation has had a new version published. The body will be the\r\nRepresentation Version"
+        onRepresentationVersionSet:
+          type: boolean
+          description: "If enabled, a webhook POST request will be made whenever some\r\nrepresentation has had its version updated. The body will be the\r\nRepresentation Version"
+      additionalProperties: false
+      x-access-modifier: internal
+  securitySchemes:
+    Admin:
+      type: http
+      description: "To get started with Authentication, please visit the [Admin Authentication section](https://services.docs.unity.com/docs/admin-auth).\r\nFor this API, you will need to add the following role(s) to your service account :\r\n| Role Type | Role Name | Permissions |\r\n| --- | --- | --- |\r\n| Organization Level Role | User Generated Content Admin | <ul><li>user_generated_content.admin.all</li></ul> |"
+      scheme: Basic
